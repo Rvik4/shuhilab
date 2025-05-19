@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- АДАПТИВНІСТЬ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shuhi Lab</title>
     <style>
         html, body {
@@ -14,18 +14,19 @@
         body {
             font-family: Arial, sans-serif;
             background-image: url('https://i.ibb.co/6S6VqHz/Logo3.png');
-            background-size: cover;
+            background-size: contain; /* повністю видно зображення */
             background-position: center;
             background-repeat: no-repeat;
+            background-color: black; /* поза логотипом */
             background-attachment: fixed;
             color: black;
         }
 
         header, nav, main, footer {
-            background-color: rgba(255, 255, 255, 0.7); /* Прозорий білий */
+            background-color: rgba(255, 255, 255, 0.75);
             text-align: center;
-            padding: 4vw;
-            margin: 2vw auto;
+            padding: 5vw;
+            margin: 3vw auto;
             width: 90%;
             border-radius: 1rem;
             box-sizing: border-box;
@@ -33,11 +34,10 @@
 
         nav a {
             display: inline-block;
-            margin: 1vw 2vw;
+            margin: 2vw;
             text-decoration: none;
             color: black;
             font-weight: bold;
-            font-size: 4vw;
         }
 
         h1 {
@@ -50,7 +50,6 @@
 
         p, li {
             font-size: 4vw;
-            text-shadow: 0 0 4px white;
         }
 
         ul {
@@ -62,23 +61,11 @@
             content: "🍣 ";
         }
 
-        /* ПК-версія */
         @media (min-width: 768px) {
-            nav a {
-                font-size: 1.2rem;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            p, li {
-                font-size: 1rem;
-            }
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2rem; }
+            p, li { font-size: 1rem; }
+            nav a { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -120,7 +107,7 @@
     </main>
 
     <footer>
-        <p>&copy; ..</p>
+        <p>&copy; Смачного.</p>
     </footer>
 
 </body>
