@@ -3,27 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <title>Shuhi Lab</title>
-</head>
-<body style="font-family: Arial, sans-serif; background-color: #fff8f0; color: #333; margin: 0; padding: 0;">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black; /* фон за межами круга */
+            background-image: url('logo.png'); /* назва твоєї картинки */
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: contain;
+            color: #333;
+        }
 
-    <header style="background-color: #ff5e5e; padding: 20px; text-align: center; color: white;">
+        main, header, nav, footer {
+            background-color: rgba(255, 255, 255, 0.85); /* напівпрозорий фон блоків */
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        nav {
+            background-color: #ffd3c1;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        header {
+            background-color: #ff5e5e;
+            text-align: center;
+            color: white;
+        }
+
+        footer {
+            background-color: #ff5e5e;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
         <h1>Shuhi Lab</h1>
         <p>Суші з душею.</p>
     </header>
 
-    <nav style="background-color: #ffd3c1; padding: 10px; text-align: center;">
-        <a href="#menu" style="margin: 0 15px;">Меню</a>
-        <a href="#about" style="margin: 0 15px;">Про нас</a>
-        <a href="#contact" style="margin: 0 15px;">Контакти</a>
+    <nav>
+        <a href="#menu">Меню</a>
+        <a href="#about">Про нас</a>
+        <a href="#contact">Контакти</a>
     </nav>
 
-    <main style="padding: 20px;">
+    <main>
         <section id="menu">
             <h2>🍣 Меню</h2>
             <ul>
-                <li> тут повине бути меню </li>
-                <li> тут повине бути меню </li>
-                <li> тут повине бути меню </li>
+                <li>тут повине бути меню</li>
+                <li>тут повине бути меню</li>
+                <li>тут повине бути меню</li>
             </ul>
         </section>
 
@@ -34,15 +79,15 @@
 
         <section id="contact">
             <h2>📞 Контакти</h2>
-            <p>м.Кривий Ріг </p>
-            <p>Телефон: 0 (98) 996 69 91 </p>
-            <p>Находимся за адресою: Соборності 17 </p>
-            <p>Робимо доставку тільки через Uklon </p>
+            <p>м. Кривий Ріг</p>
+            <p>Телефон: 0 (98) 996 69 91</p>
+            <p>Находимся за адресою: Соборності 17</p>
+            <p>Робимо доставку тільки через Uklon</p>
             <p>Email: </p>
         </section>
     </main>
 
-    <footer style="background-color: #ff5e5e; color: white; text-align: center; padding: 10px;">
+    <footer>
         <p>&copy; 2025 Shuhi Lab. Усі права захищені.</p>
     </footer>
 
