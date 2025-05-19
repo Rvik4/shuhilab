@@ -8,44 +8,38 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: black; /* фон за межами круга */
-            background-image: url('logo.png'); /* назва твоєї картинки */
+            background-image: url('logo.png'); /* заміни назву файлу за потреби */
             background-repeat: no-repeat;
-            background-position: center top;
-            background-size: contain;
-            color: #333;
+            background-position: center center;
+            background-size: cover;
+            background-color: black; /* фоновий колір поза зображенням */
+            color: white;
         }
 
-        main, header, nav, footer {
-            background-color: rgba(255, 255, 255, 0.85); /* напівпрозорий фон блоків */
-            margin: 20px auto;
-            max-width: 800px;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        nav {
-            background-color: #ffd3c1;
+        header, nav, main, footer {
+            background-color: transparent; /* повністю прозорі блоки */
             text-align: center;
+            padding: 20px;
         }
 
         nav a {
+            color: #ffcccb;
             margin: 0 15px;
             text-decoration: none;
-            color: #333;
             font-weight: bold;
         }
 
-        header {
-            background-color: #ff5e5e;
-            text-align: center;
-            color: white;
+        h1, h2, p, li {
+            text-shadow: 1px 1px 3px #000; /* щоб текст читався на фоні */
         }
 
-        footer {
-            background-color: #ff5e5e;
-            text-align: center;
-            color: white;
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li::before {
+            content: "🍣 ";
         }
     </style>
 </head>
@@ -64,7 +58,7 @@
 
     <main>
         <section id="menu">
-            <h2>🍣 Меню</h2>
+            <h2>Меню</h2>
             <ul>
                 <li>тут повине бути меню</li>
                 <li>тут повине бути меню</li>
@@ -73,22 +67,21 @@
         </section>
 
         <section id="about">
-            <h2>👨‍🍳 Про нас</h2>
-            <p>Shuhi Lab — це місце, де мистецтво японської кухні поєднується з інноваціями. Ми створюємо авторські суші та роли з найсвіжіших інгредієнтів.</p>
+            <h2>Про нас</h2>
+            <p>Shuhi Lab — це місце, де мистецтво японської кухні поєднується з інноваціями.</p>
         </section>
 
         <section id="contact">
-            <h2>📞 Контакти</h2>
+            <h2>Контакти</h2>
             <p>м. Кривий Ріг</p>
             <p>Телефон: 0 (98) 996 69 91</p>
-            <p>Находимся за адресою: Соборності 17</p>
-            <p>Робимо доставку тільки через Uklon</p>
-            <p>Email: </p>
+            <p>Соборності 17</p>
+            <p>Доставка через Uklon</p>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Shuhi Lab. Усі права захищені.</p>
+        <p>&copy; Дякую за замовленя.</p>
     </footer>
 
 </body>
