@@ -4,16 +4,20 @@
     <meta charset="UTF-8">
     <title>Shuhi Lab</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        html, body {
             margin: 0;
             padding: 0;
-            background-color: black;
-            background-image: url('https://i.ibb.co/yjKcNG8/logo.png');
-            background-repeat: no-repeat;
+            height: 100%;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.ibb.co/yjKcNG8/logo.png'); /* Твоя картинка */
+            background-size: cover; /* Заповнює весь екран */
             background-position: center center;
-            background-size: cover;
-            color: white;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: black; /* Чорний текст */
         }
 
         header, nav, main, footer {
@@ -23,14 +27,14 @@
         }
 
         nav a {
-            color: #ffcccb;
+            color: black;
             margin: 0 15px;
             text-decoration: none;
             font-weight: bold;
         }
 
         h1, h2, p, li {
-            text-shadow: 1px 1px 3px #000;
+            text-shadow: 0 0 5px white; /* Щоб текст був читабельним на фоні */
         }
 
         ul {
