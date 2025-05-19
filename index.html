@@ -13,13 +13,18 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-image: url('https://i.ibb.co/j9kfbpDN/FON.webp'); /* <- змініть це посилання на ваше зображення */
-            background-size: contain;
+            color: black;
+        }
+
+        .background-wrapper {
+            background-image: url('https://i.ibb.co/j9kfbpDN/FON.webp');
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-color: black;
             background-attachment: fixed;
-            color: black;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
         }
 
         header, nav, main, footer {
@@ -70,45 +75,45 @@
     </style>
 </head>
 <body>
+    <div class="background-wrapper">
+        <header>
+            <h1>Shuhi Lab</h1>
+            <p>Суші з душею.</p>
+        </header>
 
-    <header>
-        <h1>Shuhi Lab</h1>
-        <p>Суші з душею.</p>
-    </header>
+        <nav>
+            <a href="#menu">Меню</a>
+            <a href="#about">Про нас</a>
+            <a href="#contact">Контакти</a>
+        </nav>
 
-    <nav>
-        <a href="#menu">Меню</a>
-        <a href="#about">Про нас</a>
-        <a href="#contact">Контакти</a>
-    </nav>
+        <main>
+            <section id="menu">
+                <h2>Меню</h2>
+                <ul>
+                    <li>тут повине бути меню</li>
+                    <li>тут повине бути меню</li>
+                    <li>тут повине бути меню</li>
+                </ul>
+            </section>
 
-    <main>
-        <section id="menu">
-            <h2>Меню</h2>
-            <ul>
-                <li>тут повине бути меню</li>
-                <li>тут повине бути меню</li>
-                <li>тут повине бути меню</li>
-            </ul>
-        </section>
+            <section id="about">
+                <h2>Про нас</h2>
+                <p>Shuhi Lab — це місце, де мистецтво японської кухні поєднується з інноваціями.</p>
+            </section>
 
-        <section id="about">
-            <h2>Про нас</h2>
-            <p>Shuhi Lab — це місце, де мистецтво японської кухні поєднується з інноваціями.</p>
-        </section>
+            <section id="contact">
+                <h2>Контакти</h2>
+                <p>м. Кривий Ріг</p>
+                <p>Телефон: 0 (98) 996 69 91</p>
+                <p>Соборності 17</p>
+                <p>Доставка через Uklon</p>
+            </section>
+        </main>
 
-        <section id="contact">
-            <h2>Контакти</h2>
-            <p>м. Кривий Ріг</p>
-            <p>Телефон: 0 (98) 996 69 91</p>
-            <p>Соборності 17</p>
-            <p>Доставка через Uklon</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; Shuhi Lab. Смачного.</p>
-    </footer>
-
+        <footer>
+            <p>&copy; Shuhi Lab. Смачного.</p>
+        </footer>
+    </div>
 </body>
 </html>
