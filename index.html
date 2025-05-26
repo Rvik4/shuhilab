@@ -5,54 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shuhi Lab</title>
     <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
-
-        body {
-            font-family: Loremipsum, sans-serif;
-             background-image: url('https://i.postimg.cc/nV7GHNZy/Logo3.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: black;
-        }
-
-        header, nav, main, footer {
-            background-image: url('https://i.postimg.cc/NMzkPw6M/FON1.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            text-align: center;
-            padding: 5vw;
-            margin: 3vw auto;
-            width: 90%;
-            border-radius: 1rem;
+        * {
             box-sizing: border-box;
         }
 
+        body {
+            margin: 0;
+            font-family: '1111', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3e7d9;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+            background-color: #f3e7d9;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #7c4a2e;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffffee;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+            padding: 0.5rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
         nav a {
-            display: inline-block;
-            margin: 2vw;
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
             text-decoration: none;
-            color: black;
+            color: #333;
             font-weight: bold;
+            background-color: #f3e7d9;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
         }
 
-        h1 {
-            font-size: 8vw;
+        nav a:hover,
+        nav a:focus,
+        nav a:active {
+            background-color: #c1440e;
+            color: #fff;
         }
 
-        h2 {
-            font-size: 6vw;
+        main {
+            max-width: 1200px;
+            margin: 6rem auto 2rem;
+            padding: 2rem 1rem;
+            display: grid;
+            gap: 2rem;
         }
 
-        p, li {
-            font-size: 4vw;
+        section {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        section h2 {
+            margin-top: 0;
+            color: #222;
         }
 
         ul {
@@ -61,42 +89,67 @@
         }
 
         li::before {
-            content: "🍣 ";
+            content: "\1F363 ";
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #f3e7d9;
+            color: #7c4a2e;
+        }
+
+        .menu-img, .about-img {
+            width: 100%;
+            border-radius: 1rem;
+            margin: 1rem 0;
+        }
+
+        .custom-image {
+            width: 100%;
+            border-radius: 1rem;
+            margin: 1rem 0;
+            max-height: 400px;
+            object-fit: cover;
         }
 
         @media (min-width: 768px) {
-            h1 { font-size: 3rem; }
-            h2 { font-size: 2rem; }
-            p, li { font-size: 1rem; }
-            nav a { font-size: 1.1rem; }
+            main {
+                grid-template-columns: 1fr 1fr;
+            }
+            section#contact {
+                grid-column: span 2;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Shuhi Lab</h1>
-        <p>Суші з душею.</p>
-    </header>
-
     <nav>
         <a href="#menu">Меню</a>
         <a href="#about">Про нас</a>
         <a href="#contact">Контакти</a>
     </nav>
 
+    <header>
+        <h1>Shuhi Lab</h1>
+        <p>Японська кухня — мистецтво приготування</p>
+    </header>
+
     <main>
         <section id="menu">
-            <h2>Меню</h2>
+            <h2>Ізисканні страви</h2>
+            <img src="https://i.postimg.cc/wxPVbrXB/sushi.jpg" alt="Суші" class="custom-image">
             <ul>
-                <li>тут повине бути меню</li>
-                <li>тут повине бути меню</li>
-                <li>тут повине бути меню</li>
+                <li>Суші з лососем</li>
+                <li>Рол з тунцем</li>
+                <li>Рамен класичний</li>
             </ul>
         </section>
 
         <section id="about">
             <h2>Про нас</h2>
-            <p>Shuhi Lab — це місце, де мистецтво японської кухні поєднується з інноваціями.</p>
+            <img src="https://i.postimg.cc/fTZPwjKz/ramen.jpg" alt="Рамен" class="custom-image">
+            <p>Shuhi Lab — поєднання традицій японської кухні та сучасного підходу до смаку й сервісу.</p>
         </section>
 
         <section id="contact">
@@ -109,7 +162,7 @@
     </main>
 
     <footer>
-        <p>&copy; Shuhi Lab. Смачного.</p>
+        <p>&copy; 2025 Shuhi Lab. Смачного.</p>
     </footer>
 </body>
 </html>
