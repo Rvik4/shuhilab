@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shuhi Lab</title>
+  <title>Sushi Lab</title>
   <link rel="icon" type="image/png" href="https://i.postimg.cc/nV7GHNZy/Logo3.png" />
   <style>
     * {
@@ -38,6 +38,15 @@
       font-weight: bold;
       color: #7c4a2e;
       font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo-img {
+      height: 32px;
+      width: 32px;
+      object-fit: contain;
+      user-select: none;
     }
     nav {
       display: flex;
@@ -296,177 +305,195 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="nav-container">
-      <div class="nav-logo">Shuhi Lab</div>
-      <button class="burger" onclick="toggleMenu()">☰ Меню</button>
-      <nav>
-        <button onclick="showSection('home')">Головна</button>
-        <button onclick="showSection('menu')">Меню</button>
-        <button onclick="showSection('about')">Про нас</button>
-        <button onclick="showSection('contact')">Контакти</button>
-        <button onclick="showSection('cart')">Кошик</button>
-      </nav>
-    </div>
-    <div class="mobile-nav" id="mobileNav">
-      <button onclick="showSection('home'); toggleMenu()">Головна</button>
-      <button onclick="showSection('menu'); toggleMenu()">Меню</button>
-      <button onclick="showSection('about'); toggleMenu()">Про нас</button>
-      <button onclick="showSection('contact'); toggleMenu()">Контакти</button>
-      <button onclick="showSection('cart'); toggleMenu()">Кошик</button>
-    </div>
-  </header>
 
-  <div id="home" class="section active">
-    <div class="carousel" id="carousel">
-      <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Слайд 1" class="active" />
-      <img src="https://i.postimg.cc/ZR8tcSt2/k2.jpg" alt="Слайд 2" />
-      <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Слайд 3" />
-      <img src="https://i.postimg.cc/ZR8tcSt2/k2.jpg" alt="Слайд 4" />
+<header>
+  <div class="nav-container">
+    <div class="nav-logo">
+      <img src="https://i.postimg.cc/nV7GHNZy/Logo3.png" alt="Shuhi Lab Logo" class="logo-img" />
+      Shuhi Lab
     </div>
+    <button class="burger" onclick="toggleMenu()">☰ Меню</button>
+    <nav>
+      <button onclick="showSection('home')">Головна</button>
+      <button onclick="showSection('menu')">Меню</button>
+      <button onclick="showSection('about')">Про нас</button>
+      <button onclick="showSection('contact')">Контакти</button>
+      <button onclick="showSection('cart')">Кошик</button>
+    </nav>
   </div>
-
-  <div id="menu" class="section">
-    <h2>Меню</h2>
-    <ul class="menu-list" id="menuList">
-      <!-- Приклад пункту меню -->
-      <li>
-        <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Філадельфія" />
-        <div class="menu-info">
-          <h3>Філадельфія</h3>
-          <p>Смачні суші з лососем, крем-сиром і авокадо.</p>
-        </div>
-        <button class="add-btn" onclick="addToCart('Філадельфія', 120, 'https://i.postimg.cc/6362Cmtt/bol.jpg')">Додати</button>
-      </li>
-      <li>
-        <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Рол з тунцем" />
-        <div class="menu-info">
-          <h3>Рол з тунцем</h3>
-          <p>Свіжий рол з тунцем та овочами.</p>
-        </div>
-        <button class="add-btn" onclick="addToCart('Рол з тунцем', 120, 'https://i.postimg.cc/6362Cmtt/bol.jpg')">Додати</button>
-      </li>
-      <li>
-        <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Бургер" />
-        <div class="menu-info">
-          <h3>Бургер</h3>
-          <p>Соковитий бургер із сиром та соусом.</p>
-        </div>
-        <button class="add-btn" onclick="addToCart('Бургер', 90, 'https://i.postimg.cc/6362Cmtt/bol.jpg')">Додати</button>
-      </li>
-    </ul>
+  <div class="mobile-nav" id="mobileNav">
+    <button onclick="showSection('home'); toggleMenu()">Головна</button>
+    <button onclick="showSection('menu'); toggleMenu()">Меню</button>
+    <button onclick="showSection('about'); toggleMenu()">Про нас</button>
+    <button onclick="showSection('contact'); toggleMenu()">Контакти</button>
+    <button onclick="showSection('cart'); toggleMenu()">Кошик</button>
   </div>
+</header>
 
-  <div id="about" class="section">
+<section id="home" class="section active">
+  <div class="carousel">
+    <img src="https://i.postimg.cc/02v0rf4N/Slider1.png" alt="Slide 1" class="active" />
+    <img src="https://i.postimg.cc/13QZrgYR/Slider2.png" alt="Slide 2" />
+    <img src="https://i.postimg.cc/xC92CHvy/Slider3.png" alt="Slide 3" />
+  </div>
+</section>
+
+<section id="menu" class="section">
+  <ul class="menu-list" id="menuList">
+    <!-- Меню завантажується скриптом -->
+  </ul>
+</section>
+
+<section id="about" class="section">
+  <div id="aboutContent">
     <h2>Про нас</h2>
-    <div id="aboutContent">
-      <p>Shuhi Lab — поєднання традицій японської кухні та сучасного підходу до смаку й сервісу.</p>
-    </div>
+    <p>Лабораторія Shuhi Lab пропонує унікальні суші та ролли з найсвіжіших інгредієнтів.</p>
+    <p>Ми піклуємось про якість та смак кожного блюда.</p>
   </div>
+</section>
 
-  <div id="contact" class="section">
+<section id="contact" class="section">
+  <div id="contactContent">
     <h2>Контакти</h2>
-    <div id="contactContent">
-    <p>м. Кривий Ріг</p>
-    <p>Телефон: 0 (98) 996 69 91</p>
-    <p>вул. Соборності 17</p>
-    <p>Доставка через Uklon</p>
-    </div>
+    <p>Телефон: +380 99 123 45 67</p>
+    <p>Адреса: вул. Центральна, 10, Київ</p>
+    <p>Email: info@shuhilab.ua</p>
   </div>
+</section>
 
-  <div id="cart" class="section">
-    <h2>Кошик</h2>
-    <ul id="cartItems"></ul>
-    <div id="cartTotal">Всього: 0 грн</div>
-    <button id="checkoutBtn" onclick="checkout()">Оплатити</button>
-  </div>
+<section id="cart" class="section">
+  <h2>Ваш кошик</h2>
+  <ul id="cartItems"></ul>
+  <div id="cartTotal">Загалом: 0 грн</div>
+  <button id="checkoutBtn">Оформити замовлення</button>
+</section>
 
 <script>
-  // Навігація по секціях
-  function showSection(sectionId) {
-    document.querySelectorAll('.section').forEach(sec => {
-      sec.classList.remove('active');
-    });
-    document.getElementById(sectionId).classList.add('active');
-    if(window.innerWidth <= 768) toggleMenu(false);
-  }
-
-  // Мобільне меню
-  function toggleMenu(forceClose) {
-    const mobileNav = document.getElementById('mobileNav');
-    if(forceClose === false) {
-      mobileNav.classList.remove('active');
-      return;
+  // Меню з товарами
+  const menuItems = [
+    {
+      id: 1,
+      name: 'Ролл Каліфорнія',
+      description: 'Соковиті ролли з крабом, авокадо та огірком',
+      price: 150,
+      img: 'https://i.postimg.cc/1XnXjYwq/Roll1.png'
+    },
+    {
+      id: 2,
+      name: 'Суші Лосось',
+      description: 'Свіжий лосось на рисі з норі',
+      price: 100,
+      img: 'https://i.postimg.cc/qqB69mwq/Sushi1.png'
+    },
+    {
+      id: 3,
+      name: 'Ролл Філадельфія',
+      description: 'Ролл з лососем, сиром Філадельфія та огірком',
+      price: 180,
+      img: 'https://i.postimg.cc/m2qkmCmt/Roll2.png'
     }
-    mobileNav.classList.toggle('active');
-  }
+  ];
 
-  // Карусель
-  const carouselImages = document.querySelectorAll('#carousel img');
-  let currentSlide = 0;
-  function showSlide(index) {
-    carouselImages.forEach((img, i) => {
-      img.classList.toggle('active', i === index);
+  const menuList = document.getElementById('menuList');
+  const cartItemsEl = document.getElementById('cartItems');
+  const cartTotalEl = document.getElementById('cartTotal');
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  let cart = {};
+
+  // Відобразити меню
+  function renderMenu() {
+    menuList.innerHTML = '';
+    menuItems.forEach(item => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <img src="${item.img}" alt="${item.name}" />
+        <div class="menu-info">
+          <h3>${item.name}</h3>
+          <p>${item.description}</p>
+          <strong>${item.price} грн</strong>
+        </div>
+        <button class="add-btn" onclick="addToCart(${item.id})">Додати</button>
+      `;
+      menuList.appendChild(li);
     });
   }
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % carouselImages.length;
-    showSlide(currentSlide);
-  }
-  setInterval(nextSlide, 4000);
 
-  // Кошик
-  let cart = [];
-
-  function addToCart(name, price, img) {
-    const found = cart.find(item => item.name === name);
-    if(found) {
-      found.qty++;
+  // Додати товар до кошика
+  function addToCart(id) {
+    if (cart[id]) {
+      cart[id].qty++;
     } else {
-      cart.push({name, price, qty:1, img});
+      const item = menuItems.find(i => i.id === id);
+      cart[id] = { ...item, qty: 1 };
     }
-    updateCartUI();
-    showSection('cart');
+    renderCart();
   }
 
-  function updateCartUI() {
-    const cartItems = document.getElementById('cartItems');
-    cartItems.innerHTML = '';
+  // Оновити відображення кошика
+  function renderCart() {
+    cartItemsEl.innerHTML = '';
     let total = 0;
-    cart.forEach((item, idx) => {
+    for (const id in cart) {
+      const item = cart[id];
       total += item.price * item.qty;
       const li = document.createElement('li');
       li.innerHTML = `
         <img src="${item.img}" alt="${item.name}" />
         <div class="cart-info">
-          <span>${item.name}</span>
+          <span>${item.name} - ${item.price} грн</span>
           <div class="qty-controls">
-            <button onclick="changeQty(${idx}, -1)">-</button>
+            <button onclick="changeQty(${id}, -1)">-</button>
             <span>${item.qty}</span>
-            <button onclick="changeQty(${idx}, 1)">+</button>
+            <button onclick="changeQty(${id}, 1)">+</button>
           </div>
         </div>
       `;
-      cartItems.appendChild(li);
-    });
-    document.getElementById('cartTotal').textContent = `Всього: ${total} грн`;
-  }
-
-  function changeQty(index, delta) {
-    cart[index].qty += delta;
-    if(cart[index].qty < 1) {
-      cart.splice(index, 1);
+      cartItemsEl.appendChild(li);
     }
-    updateCartUI();
+    cartTotalEl.textContent = `Загалом: ${total} грн`;
   }
 
-  function checkout() {
-    // Проста оплата без підтвердження
-    cart = [];
-    updateCartUI();
-    alert('Дякуємо за замовлення!');
-    showSection('home');
+  // Змінити кількість у кошику
+  function changeQty(id, delta) {
+    if (!cart[id]) return;
+    cart[id].qty += delta;
+    if (cart[id].qty <= 0) {
+      delete cart[id];
+    }
+    renderCart();
   }
+
+  // Показати певний розділ
+  function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(sec => {
+      sec.classList.remove('active');
+    });
+    document.getElementById(sectionId).classList.add('active');
+  }
+
+  // Бургер-меню
+  function toggleMenu() {
+    document.getElementById('mobileNav').classList.toggle('active');
+  }
+
+  // Карусель (проста)
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.carousel img');
+  setInterval(() => {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }, 4000);
+
+  renderMenu();
+  renderCart();
+
+  checkoutBtn.addEventListener('click', () => {
+    alert('Дякуємо за замовлення!');
+    cart = {};
+    renderCart();
+    showSection('home');
+  });
 </script>
 
 </body>
