@@ -19,15 +19,15 @@
 
     nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 1rem;
+      left: 1rem;
+      right: 1rem;
       display: flex;
       justify-content: center;
       gap: 1rem;
       background: white;
-      padding: 1rem;
-      border-bottom: 1px solid #ccc;
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       z-index: 1000;
     }
@@ -65,7 +65,7 @@
 
     header {
       text-align: center;
-      padding: 6rem 1rem 2rem;
+      padding: 5rem 1rem 1rem;
       background-color: #f3e7d9;
     }
 
@@ -80,33 +80,63 @@
       color: #7c4a2e;
     }
 
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .carousel img {
+      height: 300px;
+      flex: 0 0 auto;
+      scroll-snap-align: center;
+      border-radius: 1rem;
+    }
+
     main {
       max-width: 1200px;
       margin: 2rem auto;
       padding: 2rem 1rem;
-      display: grid;
-      gap: 2rem;
     }
 
-    section {
-      background-color: #fff;
-      padding: 1.5rem;
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      margin: 1rem 0;
+      padding: 1rem;
       border-radius: 1rem;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    section h2 {
-      margin-top: 0;
-      color: #222;
+    button {
+      padding: 0.5rem 1rem;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
+    .cart {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
     }
 
-    li::before {
-      content: "\1F363 ";
+    .cart.visible {
+      display: flex;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 1rem;
     }
 
     footer {
@@ -115,120 +145,49 @@
       background-color: #f3e7d9;
       color: #7c4a2e;
     }
-
-    .custom-image {
-      width: 100%;
-      border-radius: 1rem;
-      margin: 1rem 0;
-      max-height: 400px;
-      object-fit: cover;
-    }
-
-    .cart {
-      max-width: 600px;
-      margin: auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .cart h2 {
-      text-align: center;
-    }
-
-    .cart ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .cart li {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .cart-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .cart-buttons button {
-      padding: 0.5rem 1rem;
-      background: black;
-      color: white;
-      border: none;
-      border-radius: 0.5rem;
-      cursor: pointer;
-    }
-
-    @media (min-width: 768px) {
-      main {
-        grid-template-columns: 1fr 1fr;
-      }
-      section#contact {
-        grid-column: span 2;
-      }
-    }
   </style>
 </head>
 <body>
   <nav>
-    <a href="#menu" onclick="showMain()">Меню</a>
-    <a href="#about">Про нас</a>
-    <a href="#contact">Контакти</a>
-    <a href="#" onclick="showCart()">Замовити</a>
+    <a href="#menu" onclick="toggleCart(false)">Меню</a>
+    <a href="#" onclick="toggleCart(true)">Кошик</a>
   </nav>
 
-  <div id="mainContent">
-    <header>
-      <img src="https://i.postimg.cc/nV7GHNZy/Logo3.png" alt="Shuhi Lab Logo" class="logo" />
-      <p>Японська кухня — мистецтво приготування</p>
-    </header>
+  <header>
+    <img src="https://i.postimg.cc/nV7GHNZy/Logo3.png" alt="Shuhi Lab Logo" class="logo" />
+    <p>Японська кухня — мистецтво приготування</p>
+  </header>
 
-    <main>
-      <section id="menu">
-        <h2>Вишукані страви</h2>
-        <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Суші" class="custom-image" />
-        <ul>
-          <li>Суші з лососем <button onclick="addToCart('Суші з лососем', 120)">+</button></li>
-          <li>Рол з тунцем <button onclick="addToCart('Рол з тунцем', 100)">+</button></li>
-          <li>Бургер <button onclick="addToCart('Бургер', 80)">+</button></li>
-        </ul>
-      </section>
-
-      <section id="about">
-        <h2>Про нас</h2>
-        <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Бол" class="custom-image" />
-        <p>
-          Shuhi Lab — поєднання традицій японської кухні та сучасного підходу до смаку й сервісу.
-        </p>
-      </section>
-
-      <section id="contact">
-        <h2>Контакти</h2>
-        <p>м. Кривий Ріг</p>
-        <p>Телефон: 0 (98) 996 69 91</p>
-        <p>вул. Соборності 17</p>
-        <p>Доставка через Uklon</p>
-      </section>
-    </main>
-  </div>
-
-  <div id="cartPage" style="display:none;">
-    <div class="cart">
-      <h2>Кошик</h2>
-      <ul id="cartItems"></ul>
-      <p><strong>Сума: </strong><span id="total">0</span> грн</p>
-      <div class="cart-buttons">
-        <button onclick="checkout()">Оплатити</button>
-        <button onclick="showMain()">Назад до меню</button>
-      </div>
+  <main>
+    <div class="carousel">
+      <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Страва 1">
+      <img src="https://i.postimg.cc/nV7GHNZy/Logo3.png" alt="Логотип">
+      <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Страва 3">
     </div>
-  </div>
+
+    <section id="menu">
+      <div class="menu-item">
+        <span>Суші з лососем - 120 грн</span>
+        <button onclick="addToCart('Суші з лососем', 120)">Додати</button>
+      </div>
+      <div class="menu-item">
+        <span>Рол з тунцем - 140 грн</span>
+        <button onclick="addToCart('Рол з тунцем', 140)">Додати</button>
+      </div>
+      <div class="menu-item">
+        <span>Бургер - 100 грн</span>
+        <button onclick="addToCart('Бургер', 100)">Додати</button>
+      </div>
+    </section>
+
+    <section id="cart" class="cart">
+      <h2>Кошик</h2>
+      <div id="cart-items"></div>
+      <p>Сума: <span id="total">0</span> грн</p>
+      <button onclick="checkout()">Оплатити</button>
+      <button onclick="toggleCart(false)">Назад до меню</button>
+    </section>
+  </main>
 
   <footer>
     <p>&copy; 2025 Shuhi Lab. Смачного.</p>
@@ -237,49 +196,43 @@
   <script>
     let cart = [];
 
-    function addToCart(item, price) {
-      const existing = cart.find(i => i.name === item);
+    function addToCart(name, price) {
+      const existing = cart.find(item => item.name === name);
       if (existing) {
-        existing.qty++;
+        existing.quantity++;
       } else {
-        cart.push({ name: item, price, qty: 1 });
+        cart.push({ name, price, quantity: 1 });
       }
-      alert(`${item} додано в кошик.`);
+      updateCart();
     }
 
-    function showCart() {
-      document.getElementById('mainContent').style.display = 'none';
-      document.getElementById('cartPage').style.display = 'block';
-      renderCart();
-    }
-
-    function showMain() {
-      document.getElementById('cartPage').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'block';
-    }
-
-    function renderCart() {
-      const container = document.getElementById('cartItems');
-      container.innerHTML = '';
-      let total = 0;
+    function updateCart() {
+      const cartItems = document.getElementById('cart-items');
+      const total = document.getElementById('total');
+      cartItems.innerHTML = '';
+      let sum = 0;
       cart.forEach((item, index) => {
-        total += item.price * item.qty;
-        const li = document.createElement('li');
-        li.innerHTML = `${item.name} x${item.qty} (${item.price} грн) <button onclick="removeItem(${index})">Видалити</button>`;
-        container.appendChild(li);
+        sum += item.price * item.quantity;
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `${item.name} x${item.quantity} - ${item.price * item.quantity} грн <button onclick="removeFromCart(${index})">Видалити</button>`;
+        cartItems.appendChild(div);
       });
-      document.getElementById('total').innerText = total;
+      total.textContent = sum;
     }
 
-    function removeItem(index) {
+    function removeFromCart(index) {
       cart.splice(index, 1);
-      renderCart();
+      updateCart();
     }
 
     function checkout() {
       alert('Дякуємо за замовлення! Оплата буде реалізована пізніше.');
-      cart = [];
-      showMain();
+    }
+
+    function toggleCart(show) {
+      document.getElementById('cart').classList.toggle('visible', show);
+      document.getElementById('menu').style.display = show ? 'none' : 'block';
     }
   </script>
 </body>
