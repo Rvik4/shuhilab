@@ -6,17 +6,12 @@
   <title>Shuhi Lab</title>
   <link rel="icon" type="image/png" href="https://i.postimg.cc/nV7GHNZy/Logo3.png" />
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'sans-serif', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f3e7d9;
-      color: #4a3c2b;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      color: #333;
     }
     nav {
       position: fixed;
@@ -24,172 +19,111 @@
       left: 0;
       width: 100%;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      gap: 1rem;
-      background: #fff;
-      padding: 1rem 0;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      gap: 0.5rem;
+      background: white;
+      padding: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       z-index: 1000;
-      font-weight: 600;
     }
     nav button {
-      padding: 0.6rem 1.2rem;
-      border: none;
-      background-color: transparent;
+      padding: 0.5rem 1rem;
+      color: #333;
+      font-weight: bold;
+      border: 2px solid transparent;
+      border-radius: 0.5rem;
+      background-color: #f3e7d9;
       cursor: pointer;
-      color: #4a3c2b;
-      border-radius: 8px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      font-size: 1rem;
+      transition: all 0.3s ease;
     }
-    nav button:hover, nav button.active {
-      background-color: #7c4a2e;
-      color: #fff;
+    nav button:hover {
+      background-color: #e3d6c5;
+    }
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      max-width: 100%;
+      gap: 1rem;
+      padding: 1rem;
+      height: 400px;
+    }
+    .carousel img {
+      height: 100%;
+      border-radius: 1rem;
+    }
+    .carousel-add {
+      margin: 1rem;
+      text-align: center;
+    }
+    .carousel-add input {
+      padding: 0.5rem;
+      width: 80%;
+      max-width: 300px;
+      margin-bottom: 0.5rem;
     }
     .section {
-      padding: 6rem 1.5rem 2rem;
-      max-width: 900px;
-      margin: 0 auto;
       display: none;
-      flex-grow: 1;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 6rem auto 2rem;
     }
-    .active {
-      display: block;
-    }
-    h2 {
-      color: #7c4a2e;
+    .active { display: block; }
+    #menu-list li, #cartItems li {
+      list-style: none;
       margin-bottom: 1rem;
-      font-weight: 700;
-      border-bottom: 2px solid #7c4a2e;
-      padding-bottom: 0.3rem;
-    }
-    ul {
-      padding-left: 1.2rem;
-    }
-    li {
-      margin-bottom: 0.8rem;
-      font-size: 1.1rem;
       display: flex;
-      justify-content: space-between;
+      flex-wrap: wrap;
       align-items: center;
+      gap: 1rem;
     }
-    li button {
-      background-color: #7c4a2e;
-      color: white;
-      border: none;
-      padding: 0.3rem 0.7rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
-    }
-    li button:hover {
-      background-color: #9b6440;
-    }
-    #cartItems li button {
-      background-color: #c0392b;
-    }
-    #cartItems li button:hover {
-      background-color: #e74c3c;
-    }
-    p {
-      font-size: 1rem;
-      line-height: 1.5;
-      margin-bottom: 0.7rem;
+    #menu-list img, #cartItems img {
+      height: 80px;
+      border-radius: 0.5rem;
     }
     footer {
       text-align: center;
       padding: 1rem;
       background-color: #f3e7d9;
       color: #7c4a2e;
-      font-weight: 600;
-      margin-top: auto;
     }
-
-    /* --- Карусель --- */
-    .carousel {
-      position: relative;
-      width: 100%;
-      max-width: 900px;
-      height: 400px;
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: 1rem;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-      background-color: #ddd;
-    }
-    .carousel img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      border-radius: 1rem;
-    }
-    .carousel img.active {
-      opacity: 1;
-      position: relative;
-    }
-
-    /* Кнопки навігації */
-    .carousel-nav {
-      position: absolute;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-      z-index: 10;
-    }
-    .carousel-nav button {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      border: none;
-      background-color: rgba(255, 255, 255, 0.6);
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .carousel-nav button.active {
-      background-color: #7c4a2e;
-    }
-
-    /* Кошик */
-    #cartItems {
-      list-style-type: none;
-      padding-left: 0;
-      margin-bottom: 1rem;
+    @media (max-width: 768px) {
+      .carousel {
+        height: 250px;
+      }
+      nav button {
+        flex: 1 1 40%;
+      }
+      .section {
+        padding: 1rem;
+      }
+      #menu-list li, #cartItems li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 <body>
   <nav>
-    <button onclick="showSection('home')" id="nav-home" class="active">Головна</button>
-    <button onclick="showSection('menu')" id="nav-menu">Меню</button>
-    <button onclick="showSection('about')" id="nav-about">Про нас</button>
-    <button onclick="showSection('contact')" id="nav-contact">Контакти</button>
-    <button onclick="showSection('cart')" id="nav-cart">Кошик</button>
+    <button onclick="showSection('home')">Головна</button>
+    <button onclick="showSection('menu')">Меню</button>
+    <button onclick="showSection('about')">Про нас</button>
+    <button onclick="showSection('contact')">Контакти</button>
+    <button onclick="showSection('cart')">Кошик</button>
   </nav>
 
   <div id="home" class="section active">
-    <div class="carousel" id="carousel">
-      <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Слайд 1" class="active" />
-      <img src="https://i.postimg.cc/4NdxckX9/sushi2.jpg" alt="Слайд 2" />
-      <img src="https://i.postimg.cc/zX4B48DM/sushi3.jpg" alt="Слайд 3" />
-      <div class="carousel-nav" id="carousel-nav"></div>
+    <div class="carousel" id="carousel"></div>
+    <div class="carousel-add">
+      <input type="text" id="newImageUrl" placeholder="Вставте URL фото для каруселі" />
+      <button onclick="addCarouselImage()">Додати фото</button>
     </div>
   </div>
 
   <div id="menu" class="section">
     <h2>Меню</h2>
-    <ul>
-      <li>Суші з лососем - 100₴ <button onclick="addToCart('Суші з лососем', 100)">Додати</button></li>
-      <li>Рол з тунцем - 120₴ <button onclick="addToCart('Рол з тунцем', 120)">Додати</button></li>
-      <li>Бургер - 90₴ <button onclick="addToCart('Бургер', 90)">Додати</button></li>
-    </ul>
+    <ul id="menu-list"></ul>
   </div>
 
   <div id="about" class="section">
@@ -217,97 +151,102 @@
   </footer>
 
   <script>
+    const carousel = document.getElementById('carousel');
+    function addCarouselImage() {
+      const url = document.getElementById('newImageUrl').value;
+      if (url) {
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = 'Слайд';
+        carousel.appendChild(img);
+        document.getElementById('newImageUrl').value = '';
+      }
+    }
+
+    const menuItems = [
+      {
+        name: 'Філадельфія',
+        price: 150,
+        description: 'Класичний рол з лососем та вершковим сиром',
+        photo: 'https://i.postimg.cc/zX4B48DM/sushi3.jpg'
+      },
+      {
+        name: 'Каліфорнія',
+        price: 140,
+        description: 'Рол з крабом, авокадо і огірком',
+        photo: 'https://i.postimg.cc/B6s1FXc9/sushi2.jpg'
+      }
+    ];
+
     const cart = [];
 
-    // Навігація між секціями + підсвітка кнопок
-    function showSection(id) {
-      document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-
-      // Підсвітка активної кнопки
-      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-      document.getElementById('nav-' + id).classList.add('active');
-    }
-
-    function addToCart(name, price) {
-      const existingItem = cart.find(item => item.name === name);
-      if (existingItem) {
-        existingItem.qty++;
-      } else {
-        cart.push({ name, price, qty: 1 });
-      }
-      updateCartDisplay();
-      alert(`${name} додано до кошика`);
-    }
-
-    function updateCartDisplay() {
-      const cartItems = document.getElementById('cartItems');
-      const cartTotal = document.getElementById('cartTotal');
-      cartItems.innerHTML = '';
-      let total = 0;
-      cart.forEach((item, index) => {
-        total += item.price * item.qty;
+    function renderMenu() {
+      const list = document.getElementById('menu-list');
+      list.innerHTML = '';
+      menuItems.forEach((item, i) => {
         const li = document.createElement('li');
         li.innerHTML = `
-          ${item.name} x ${item.qty} - ${item.price * item.qty}₴
-          <button onclick="removeFromCart(${index})">Видалити</button>
+          <img src="${item.photo}" alt="${item.name}" />
+          <div><strong>${item.name}</strong><br>${item.description}<br>${item.price}₴</div>
+          <button onclick="addToCart(${i})">Додати в кошик</button>
         `;
-        cartItems.appendChild(li);
+        list.appendChild(li);
       });
-      cartTotal.textContent = total;
     }
 
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCartDisplay();
+    function addToCart(index) {
+      const item = menuItems[index];
+      const existing = cart.find(i => i.name === item.name);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ ...item, qty: 1 });
+      }
+      renderCart();
+    }
+
+    function updateQty(index, delta) {
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) cart.splice(index, 1);
+      renderCart();
+    }
+
+    function renderCart() {
+      const list = document.getElementById('cartItems');
+      list.innerHTML = '';
+      let total = 0;
+      cart.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <img src="${item.photo}" alt="${item.name}" />
+          <div>
+            <strong>${item.name}</strong><br>
+            ${item.price}₴ x ${item.qty} = ${item.price * item.qty}₴<br>
+            <button onclick="updateQty(${index}, -1)">-1</button>
+            <button onclick="updateQty(${index}, 1)">+1</button>
+          </div>
+        `;
+        total += item.price * item.qty;
+        list.appendChild(li);
+      });
+      document.getElementById('cartTotal').textContent = total;
     }
 
     function checkout() {
-      if (cart.length === 0) {
-        alert('Кошик порожній');
-        return;
-      }
-      alert('Дякуємо за замовлення!');
+      if (cart.length === 0) return alert('Ваш кошик порожній!');
+      alert('Замовлення оформлено. Дякуємо!');
       cart.length = 0;
-      updateCartDisplay();
+      renderCart();
     }
 
-    // Карусель
-    const carouselImages = document.querySelectorAll('#carousel img');
-    const carouselNav = document.getElementById('carousel-nav');
-    let currentIndex = 0;
-    let interval = null;
-
-    function showSlide(index) {
-      carouselImages.forEach((img, i) => {
-        img.classList.toggle('active', i === index);
-        carouselNav.children[i].classList.toggle('active', i === index);
-      });
-      currentIndex = index;
-    }
-
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % carouselImages.length;
-      showSlide(currentIndex);
-    }
-
-    function setupCarouselNav() {
-      carouselImages.forEach((_, i) => {
-        const btn = document.createElement('button');
-        btn.addEventListener('click', () => {
-          clearInterval(interval);
-          showSlide(i);
-          interval = setInterval(nextSlide, 4000);
-        });
-        carouselNav.appendChild(btn);
-      });
-      carouselNav.children[0].classList.add('active');
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
     }
 
     window.onload = () => {
       showSection('home');
-      setupCarouselNav();
-      interval = setInterval(nextSlide, 4000);
+      renderMenu();
     };
   </script>
 </body>
