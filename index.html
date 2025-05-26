@@ -1,187 +1,175 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shuhi Lab</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shuhi Lab</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        body {
-            margin: 0;
-            font-family: '1111', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f3e7d9;
-            color: #333;
-        }
+    body {
+      margin: 0;
+      font-family: '1111', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f3e7d9;
+      color: #333;
+    }
 
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 200px;
-            background-color: #ffffffee;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding-top: 2rem;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
+    nav {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      gap: 1rem;
+      background: transparent;
+      z-index: 1000;
+    }
 
-        nav a {
-            margin: 0.5rem 0;
-            padding: 0.5rem 1rem;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            border: 2px solid transparent;
-            border-radius: 0.5rem;
-            transition: all 0.5s ease;
-        }
+    nav a {
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      border: 2px solid transparent;
+      border-radius: 0.5rem;
+      transition: all 0.5s ease;
+      background-color: transparent;
+    }
 
-        nav a:hover,
-        nav a:focus,
-        nav a:active {
-            color: white;
-            border: 2px solid;
-            border-image: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet) 1;
-            background-color: transparent;
-            animation: rainbowText 2s infinite linear;
-        }
+    nav a:hover,
+    nav a:focus,
+    nav a:active {
+      color: white;
+      border: 2px solid;
+      border-image: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet) 1;
+      background-color: transparent;
+      animation: rainbowText 2s infinite linear;
+    }
 
-        @keyframes rainbowText {
-            0% { color: red; }
-            16% { color: orange; }
-            32% { color: yellow; }
-            48% { color: green; }
-            64% { color: blue; }
-            80% { color: indigo; }
-            100% { color: violet; }
-        }
+    @keyframes rainbowText {
+      0% { color: red; }
+      16% { color: orange; }
+      32% { color: yellow; }
+      48% { color: green; }
+      64% { color: blue; }
+      80% { color: indigo; }
+      100% { color: violet; }
+    }
 
-        header {
-            margin-left: 200px;
-            text-align: center;
-            padding: 3rem 1rem 1rem;
-            background-color: #f3e7d9;
-        }
+    header {
+      text-align: center;
+      padding: 5rem 1rem 1rem;
+      background-color: #f3e7d9;
+    }
 
-        .logo {
-            max-width: 200px;
-            height: auto;
-            margin-top: 2rem;
-        }
+    .logo {
+      max-width: 200px;
+      height: auto;
+      margin-top: 2rem;
+    }
 
-        header p {
-            font-size: 1.2rem;
-            color: #7c4a2e;
-        }
+    header p {
+      font-size: 1.2rem;
+      color: #7c4a2e;
+    }
 
-        main {
-            margin-left: 200px;
-            max-width: 1000px;
-            padding: 2rem 1rem;
-            margin-top: 2rem;
-            display: grid;
-            gap: 2rem;
-        }
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem 1rem;
+      display: grid;
+      gap: 2rem;
+    }
 
-        section {
-            background-color: #fff;
-            padding: 1.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
-        }
+    section {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
 
-        section h2 {
-            margin-top: 0;
-            color: #222;
-        }
+    section h2 {
+      margin-top: 0;
+      color: #222;
+    }
 
-        ul {
-            list-style: none;
-            padding: 0;
-        }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
 
-        li::before {
-            content: "\1F363 ";
-        }
+    li::before {
+      content: "\1F363 ";
+    }
 
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: #f3e7d9;
-            color: #7c4a2e;
-        }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #f3e7d9;
+      color: #7c4a2e;
+    }
 
-        .menu-img, .about-img {
-            width: 100%;
-            border-radius: 1rem;
-            margin: 1rem 0;
-        }
+    .custom-image {
+      width: 100%;
+      border-radius: 1rem;
+      margin: 1rem 0;
+      max-height: 400px;
+      object-fit: cover;
+    }
 
-        .custom-image {
-            width: 100%;
-            border-radius: 1rem;
-            margin: 1rem 0;
-            max-height: 400px;
-            object-fit: cover;
-        }
-
-        @media (min-width: 768px) {
-            main {
-                grid-template-columns: 1fr 1fr;
-            }
-            section#contact {
-                grid-column: span 2;
-            }
-        }
-    </style>
+    @media (min-width: 768px) {
+      main {
+        grid-template-columns: 1fr 1fr;
+      }
+      section#contact {
+        grid-column: span 2;
+      }
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <a href="#menu">Меню</a>
-        <a href="#about">Про нас</a>
-        <a href="#contact">Контакти</a>
-    </nav>
+  <nav>
+    <a href="#menu">Меню</a>
+    <a href="#about">Про нас</a>
+    <a href="#contact">Контакти</a>
+  </nav>
 
-    <header>
-        <img src="https://i.postimg.cc/nV7GHNZy/Logo3.png" alt="Shuhi Lab Logo" class="logo">
-        <p>Японська кухня — мистецтво приготування</p>
-    </header>
+  <header>
+    <img src="https://i.postimg.cc/nV7GHNZy/Logo3.png" alt="Shuhi Lab Logo" class="logo" />
+    <p>Японська кухня — мистецтво приготування</p>
+  </header>
 
-    <main>
-        <section id="menu">
-            <h2>Вишукані страви</h2>
-            <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Суші" class="custom-image">
-            <ul>
-                <li>Суші з лососем</li>
-                <li>Рол з тунцем</li>
-                <li>Бургер</li>
-            </ul>
-        </section>
+  <main>
+    <section id="menu">
+      <h2>Вишукані страви</h2>
+      <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Суші" class="custom-image" />
+      <ul>
+        <li>Суші з лососем</li>
+        <li>Рол з тунцем</li>
+        <li>Бургер</li>
+      </ul>
+    </section>
 
-        <section id="about">
-            <h2>Про нас</h2>
-            <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Бол" class="custom-image">
-            <p>Shuhi Lab — поєднання традицій японської кухні та сучасного підходу до смаку й сервісу.</p>
-        </section>
+    <section id="about">
+      <h2>Про нас</h2>
+      <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Бол" class="custom-image" />
+      <p>
+        Shuhi Lab — поєднання традицій японської кухні та сучасного підходу до смаку й сервісу.
+      </p>
+    </section>
 
-        <section id="contact">
-            <h2>Контакти</h2>
-            <p>м. Кривий Ріг</p>
-            <p>Телефон: 0 (98) 996 69 91</p>
-            <p>вул.Соборності 17</p>
-            <p>Доставка через Uklon</p>
-        </section>
-    </main>
+    <section id="contact">
+      <h2>Контакти</h2>
+      <p>м. Кривий Ріг</p>
+      <p>Телефон: 0 (98) 996 69 91</p>
+      <p>Соборності 17</p>
+      <p>Доставка через Uklon</p>
+    </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2025 Shuhi Lab. Смачного.</p>
-    </footer>
+  <footer>
+    <p>&copy; 2025 Shuhi Lab. Смачного.</p>
+  </footer>
 </body>
 </html>
