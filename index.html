@@ -6,17 +6,13 @@
   <title>Shuhi Lab</title>
   <link rel="icon" type="image/png" href="https://i.postimg.cc/nV7GHNZy/Logo3.png" />
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'sans-serif', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f3e7d9;
       color: #333;
     }
-
     nav {
       position: fixed;
       top: 1rem;
@@ -31,7 +27,6 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       z-index: 1000;
     }
-
     nav a {
       padding: 0.5rem 1rem;
       text-decoration: none;
@@ -42,7 +37,6 @@
       transition: all 0.5s ease;
       background-color: transparent;
     }
-
     nav a:hover,
     nav a:focus,
     nav a:active {
@@ -52,7 +46,6 @@
       background-color: transparent;
       animation: rainbowText 2s infinite linear;
     }
-
     @keyframes rainbowText {
       0% { color: red; }
       16% { color: orange; }
@@ -62,24 +55,20 @@
       80% { color: indigo; }
       100% { color: violet; }
     }
-
     header {
       text-align: center;
       padding: 5rem 1rem 1rem;
       background-color: #f3e7d9;
     }
-
     .logo {
       max-width: 200px;
       height: auto;
       margin-top: 2rem;
     }
-
     header p {
       font-size: 1.2rem;
       color: #7c4a2e;
     }
-
     .carousel {
       display: flex;
       overflow-x: auto;
@@ -87,20 +76,17 @@
       gap: 1rem;
       padding: 1rem;
     }
-
     .carousel img {
       height: 300px;
       flex: 0 0 auto;
       scroll-snap-align: center;
       border-radius: 1rem;
     }
-
     main {
       max-width: 1200px;
       margin: 2rem auto;
       padding: 2rem 1rem;
     }
-
     .menu-item {
       display: flex;
       justify-content: space-between;
@@ -111,7 +97,6 @@
       border-radius: 1rem;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-
     button {
       padding: 0.5rem 1rem;
       background-color: #333;
@@ -120,17 +105,14 @@
       border-radius: 0.5rem;
       cursor: pointer;
     }
-
-    .cart {
+    .cart, .about, .contact {
       display: none;
       flex-direction: column;
       gap: 1rem;
     }
-
-    .cart.visible {
+    .cart.visible, .about.visible, .contact.visible {
       display: flex;
     }
-
     .cart-item {
       display: flex;
       justify-content: space-between;
@@ -138,7 +120,6 @@
       padding: 1rem;
       border-radius: 1rem;
     }
-
     footer {
       text-align: center;
       padding: 1rem;
@@ -149,8 +130,10 @@
 </head>
 <body>
   <nav>
-    <a href="#menu" onclick="toggleCart(false)">Меню</a>
-    <a href="#" onclick="toggleCart(true)">Кошик</a>
+    <a href="#menu" onclick="toggleSection('menu')">Меню</a>
+    <a href="#" onclick="toggleSection('cart')">Кошик</a>
+    <a href="#" onclick="toggleSection('about')">Про нас</a>
+    <a href="#" onclick="toggleSection('contact')">Контакти</a>
   </nav>
 
   <header>
@@ -185,7 +168,17 @@
       <div id="cart-items"></div>
       <p>Сума: <span id="total">0</span> грн</p>
       <button onclick="checkout()">Оплатити</button>
-      <button onclick="toggleCart(false)">Назад до меню</button>
+    </section>
+
+    <section id="about" class="about">
+      <h2>Про нас</h2>
+      <p>Shuhi Lab — це місце, де ми поєднуємо традиції японської кухні з сучасними технологіями приготування.</p>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Контакти</h2>
+      <p>Телефон: +380 12 345 6789</p>
+      <p>Email: sushi@shuhilab.ua</p>
     </section>
   </main>
 
@@ -230,9 +223,13 @@
       alert('Дякуємо за замовлення! Оплата буде реалізована пізніше.');
     }
 
-    function toggleCart(show) {
-      document.getElementById('cart').classList.toggle('visible', show);
-      document.getElementById('menu').style.display = show ? 'none' : 'block';
+    function toggleSection(id) {
+      const sections = ['menu', 'cart', 'about', 'contact'];
+      sections.forEach(sec => {
+        const el = document.getElementById(sec);
+        if (el) el.classList.remove('visible');
+        if (el && sec === id) el.classList.add('visible');
+      });
     }
   </script>
 </body>
