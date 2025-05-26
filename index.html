@@ -18,13 +18,13 @@
 
         header {
             text-align: center;
-            padding: 2rem 1rem;
+            padding: 2rem 1rem 1rem;
             background-color: #f3e7d9;
         }
 
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
+        .logo {
+            max-width: 200px;
+            height: auto;
         }
 
         header p {
@@ -51,16 +51,29 @@
             text-decoration: none;
             color: #333;
             font-weight: bold;
-            background-color: #f3e7d9;
+            border: 2px solid transparent;
             border-radius: 0.5rem;
-            transition: all 0.3s ease;
+            transition: all 0.5s ease;
         }
 
         nav a:hover,
         nav a:focus,
         nav a:active {
-            background-color: #c1440e;
-            color: #fff;
+            color: white;
+            border: 2px solid;
+            border-image: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet) 1;
+            background-color: transparent;
+            animation: rainbowText 2s infinite linear;
+        }
+
+        @keyframes rainbowText {
+            0% { color: red; }
+            16% { color: orange; }
+            32% { color: yellow; }
+            48% { color: green; }
+            64% { color: blue; }
+            80% { color: indigo; }
+            100% { color: violet; }
         }
 
         main {
@@ -131,7 +144,7 @@
     </nav>
 
     <header>
-        <h1>Shuhi Lab</h1>
+        <img src="https://i.postimg.cc/nV7GHNZy/Logo3.png" alt="Shuhi Lab Logo" class="logo">
         <p>Японська кухня — мистецтво приготування</p>
     </header>
 
