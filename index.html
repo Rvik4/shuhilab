@@ -9,8 +9,8 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: 'sans-serif', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f3e7d9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #fff5e6, #ffe0cc);
       color: #333;
     }
     nav {
@@ -22,23 +22,22 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 0.5rem;
-      background: white;
+      background: #fffaf5;
       padding: 1rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       z-index: 1000;
     }
     nav button {
-      padding: 0.5rem 1rem;
-      color: #333;
+      padding: 0.6rem 1.2rem;
+      background-color: #fce0c1;
+      border: none;
+      border-radius: 20px;
       font-weight: bold;
-      border: 2px solid transparent;
-      border-radius: 0.5rem;
-      background-color: #f3e7d9;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: 0.3s;
     }
     nav button:hover {
-      background-color: #e3d6c5;
+      background-color: #f8cfa8;
     }
     .carousel {
       display: flex;
@@ -47,35 +46,56 @@
       gap: 1rem;
       padding: 1rem;
       height: 400px;
+      margin-top: 5rem;
     }
     .carousel img {
       height: 100%;
       border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     .section {
       display: none;
       padding: 2rem;
       max-width: 1200px;
-      margin: 6rem auto 2rem;
+      margin: 2rem auto;
+      background-color: #fffdf8;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
     .active { display: block; }
     #menu-list li, #cartItems li {
       list-style: none;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 1rem;
+      background: #fff3e6;
+      padding: 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
     #menu-list img, #cartItems img {
       height: 80px;
       border-radius: 0.5rem;
     }
+    button.action {
+      background: #ffa166;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+    }
+    button.action:hover {
+      background: #e78a52;
+    }
     footer {
       text-align: center;
-      padding: 1rem;
-      background-color: #f3e7d9;
-      color: #7c4a2e;
+      padding: 1.5rem;
+      background-color: #fff0e0;
+      color: #8b5d3b;
+      margin-top: 2rem;
     }
     @media (max-width: 768px) {
       .carousel {
@@ -106,8 +126,8 @@
   <div id="home" class="section active">
     <div class="carousel" id="carousel">
       <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Слайд 1">
-      <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Слайд 2">
-      <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Слайд 3">
+      <img src="https://i.postimg.cc/zX4B48DM/sushi3.jpg" alt="Слайд 2">
+      <img src="https://i.postimg.cc/B6s1FXc9/sushi2.jpg" alt="Слайд 3">
     </div>
   </div>
 
@@ -133,7 +153,7 @@
     <h2>Кошик</h2>
     <ul id="cartItems"></ul>
     <p><strong>Сума: <span id="cartTotal">0</span>₴</strong></p>
-    <button onclick="checkout()">Оплатити</button>
+    <button class="action" onclick="checkout()">Оплатити</button>
   </div>
 
   <footer>
@@ -146,13 +166,13 @@
         name: 'Філадельфія',
         price: 150,
         description: 'Класичний рол з лососем та вершковим сиром',
-        photo: 'https://i.postimg.cc/6362Cmtt/bol.jpg'
+        photo: 'https://i.postimg.cc/zX4B48DM/sushi3.jpg'
       },
       {
         name: 'Каліфорнія',
         price: 140,
         description: 'Рол з крабом, авокадо і огірком',
-        photo: 'https://i.postimg.cc/6362Cmtt/bol.jpg'
+        photo: 'https://i.postimg.cc/B6s1FXc9/sushi2.jpg'
       }
     ];
 
@@ -166,7 +186,7 @@
         li.innerHTML = `
           <img src="${item.photo}" alt="${item.name}" />
           <div><strong>${item.name}</strong><br>${item.description}<br>${item.price}₴</div>
-          <button onclick="addToCart(${i})">Додати в кошик</button>
+          <button class="action" onclick="addToCart(${i})">Додати в кошик</button>
         `;
         list.appendChild(li);
       });
@@ -200,8 +220,8 @@
           <div>
             <strong>${item.name}</strong><br>
             ${item.price}₴ x ${item.qty} = ${item.price * item.qty}₴<br>
-            <button onclick="updateQty(${index}, -1)">-1</button>
-            <button onclick="updateQty(${index}, 1)">+1</button>
+            <button class="action" onclick="updateQty(${index}, -1)">-1</button>
+            <button class="action" onclick="updateQty(${index}, 1)">+1</button>
           </div>
         `;
         total += item.price * item.qty;
@@ -212,7 +232,6 @@
 
     function checkout() {
       if (cart.length === 0) return;
-      // Без alert-підтвердження
       cart.length = 0;
       renderCart();
     }
