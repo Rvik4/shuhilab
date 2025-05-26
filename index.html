@@ -4,136 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shuhi Lab</title>
-
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://i.postimg.cc/nV7GHNZy/Logo3.png" />
-
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'sans-serif', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f3e7d9;
-      color: #333;
-    }
-
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'sans-serif'; background-color: #f3e7d9; color: #333; }
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: white;
-      padding: 1rem 0;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
+      position: fixed; top: 0; left: 0; width: 100%; background: white;
+      padding: 1rem 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); z-index: 1000;
+      display: flex; justify-content: center; gap: 1rem;
     }
-
-    nav a {
-      margin: 0 1rem;
-      padding: 0.5rem 1rem;
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-      border: 2px solid transparent;
-      border-radius: 0.5rem;
-      transition: all 0.5s ease;
-      background-color: transparent;
+    nav a, nav button {
+      margin: 0 1rem; padding: 0.5rem 1rem; text-decoration: none;
+      color: #333; font-weight: bold; border: 2px solid transparent;
+      border-radius: 0.5rem; background: none; cursor: pointer;
     }
-
-    nav a:hover,
-    nav a:focus,
-    nav a:active {
+    nav a:hover, nav button:hover {
       color: white;
       border: 2px solid;
       border-image: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet) 1;
-      background-color: transparent;
       animation: rainbowText 2s infinite linear;
     }
-
     @keyframes rainbowText {
-      0% { color: red; }
-      16% { color: orange; }
-      32% { color: yellow; }
-      48% { color: green; }
-      64% { color: blue; }
-      80% { color: indigo; }
-      100% { color: violet; }
+      0% { color: red; } 16% { color: orange; } 32% { color: yellow; }
+      48% { color: green; } 64% { color: blue; } 80% { color: indigo; } 100% { color: violet; }
     }
-
-    header {
-      text-align: center;
-      padding: 6rem 1rem 1rem;
-      background-color: #f3e7d9;
-    }
-
-    .logo {
-      max-width: 200px;
-      height: auto;
-      margin-top: 2rem;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      color: #7c4a2e;
-    }
-
-    main {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 2rem 1rem;
-      display: grid;
-      gap: 2rem;
-    }
-
+    .hidden { display: none; }
+    .logo { max-width: 200px; margin-top: 6rem; }
+    main, .cart-view { max-width: 1200px; margin: 2rem auto; padding: 2rem 1rem; }
     section {
-      background-color: #fff;
-      padding: 1.5rem;
-      border-radius: 1rem;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      background: white; padding: 1.5rem; border-radius: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05); margin-bottom: 2rem;
     }
-
-    section h2 {
-      margin-top: 0;
-      color: #222;
+    button.order-btn, .checkout-btn {
+      padding: 0.5rem 1rem; background-color: #333; color: white;
+      border: none; border-radius: 0.5rem; cursor: pointer;
     }
-
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    li::before {
-      content: "\1F363 ";
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #f3e7d9;
-      color: #7c4a2e;
-    }
-
-    .custom-image {
-      width: 100%;
-      border-radius: 1rem;
-      margin: 1rem 0;
-      max-height: 400px;
-      object-fit: cover;
-    }
-
-    @media (min-width: 768px) {
-      main {
-        grid-template-columns: 1fr 1fr;
-      }
-      section#contact {
-        grid-column: span 2;
-      }
-    }
+    .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .cart-total { font-weight: bold; font-size: 1.2rem; text-align: right; margin-top: 1rem; }
   </style>
 </head>
 <body>
@@ -141,6 +48,7 @@
     <a href="#menu">Меню</a>
     <a href="#about">Про нас</a>
     <a href="#contact">Контакти</a>
+    <button onclick="showCart()">Замовити</button>
   </nav>
 
   <header>
@@ -148,36 +56,77 @@
     <p>Японська кухня — мистецтво приготування</p>
   </header>
 
-  <main>
+  <main id="main-view">
     <section id="menu">
       <h2>Вишукані страви</h2>
-      <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Суші" class="custom-image" />
       <ul>
-        <li>Суші з лососем</li>
-        <li>Рол з тунцем</li>
-        <li>Бургер</li>
+        <li>Суші з лососем — 150₴ <button class="order-btn" onclick="addToCart('Суші з лососем', 150)">Додати</button></li>
+        <li>Рол з тунцем — 130₴ <button class="order-btn" onclick="addToCart('Рол з тунцем', 130)">Додати</button></li>
+        <li>Бургер — 100₴ <button class="order-btn" onclick="addToCart('Бургер', 100)">Додати</button></li>
       </ul>
     </section>
-
-    <section id="about">
-      <h2>Про нас</h2>
-      <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Бол" class="custom-image" />
-      <p>
-        Shuhi Lab — поєднання традицій японської кухні та сучасного підходу до смаку й сервісу.
-      </p>
-    </section>
-
-    <section id="contact">
-      <h2>Контакти</h2>
-      <p>м. Кривий Ріг</p>
-      <p>Телефон: 0 (98) 996 69 91</p>
-      <p>вул. Соборності 17</p>
-      <p>Доставка через Uklon</p>
-    </section>
   </main>
+
+  <div id="cart-view" class="cart-view hidden">
+    <h2>Кошик</h2>
+    <div id="cart-items"></div>
+    <div class="cart-total" id="cart-total"></div>
+    <button class="checkout-btn" onclick="alert('Оплата ще не реалізована')">Оплатити</button>
+    <button class="order-btn" onclick="showMain()">Назад до меню</button>
+  </div>
 
   <footer>
     <p>&copy; 2025 Shuhi Lab. Смачного.</p>
   </footer>
+
+  <script>
+    const cart = [];
+
+    function addToCart(name, price) {
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      alert(`${name} додано до кошика.`);
+    }
+
+    function showCart() {
+      document.getElementById('main-view').classList.add('hidden');
+      document.getElementById('cart-view').classList.remove('hidden');
+      updateCart();
+    }
+
+    function showMain() {
+      document.getElementById('main-view').classList.remove('hidden');
+      document.getElementById('cart-view').classList.add('hidden');
+    }
+
+    function updateCart() {
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      cartItems.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price * item.qty;
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <span>${item.name} x ${item.qty} — ${item.price * item.qty}₴</span>
+          <button onclick="removeFromCart(${index})">Видалити</button>
+        `;
+        cartItems.appendChild(div);
+      });
+
+      cartTotal.textContent = `Сума: ${total}₴`;
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+  </script>
 </body>
 </html>
