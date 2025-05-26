@@ -52,16 +52,6 @@
       height: 100%;
       border-radius: 1rem;
     }
-    .carousel-add {
-      margin: 1rem;
-      text-align: center;
-    }
-    .carousel-add input {
-      padding: 0.5rem;
-      width: 80%;
-      max-width: 300px;
-      margin-bottom: 0.5rem;
-    }
     .section {
       display: none;
       padding: 2rem;
@@ -114,10 +104,10 @@
   </nav>
 
   <div id="home" class="section active">
-    <div class="carousel" id="carousel"></div>
-    <div class="carousel-add">
-      <input type="text" id="newImageUrl" placeholder="Вставте URL фото для каруселі" />
-      <button onclick="addCarouselImage()">Додати фото</button>
+    <div class="carousel" id="carousel">
+      <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Слайд 1">
+      <img src="https://i.postimg.cc/zX4B48DM/sushi3.jpg" alt="Слайд 2">
+      <img src="https://i.postimg.cc/B6s1FXc9/sushi2.jpg" alt="Слайд 3">
     </div>
   </div>
 
@@ -151,18 +141,6 @@
   </footer>
 
   <script>
-    const carousel = document.getElementById('carousel');
-    function addCarouselImage() {
-      const url = document.getElementById('newImageUrl').value;
-      if (url) {
-        const img = document.createElement('img');
-        img.src = url;
-        img.alt = 'Слайд';
-        carousel.appendChild(img);
-        document.getElementById('newImageUrl').value = '';
-      }
-    }
-
     const menuItems = [
       {
         name: 'Філадельфія',
@@ -233,8 +211,8 @@
     }
 
     function checkout() {
-      if (cart.length === 0) return alert('Ваш кошик порожній!');
-      alert('Замовлення оформлено. Дякуємо!');
+      if (cart.length === 0) return;
+      // Без alert-підтвердження
       cart.length = 0;
       renderCart();
     }
