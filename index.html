@@ -2,249 +2,469 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shuhi Lab</title>
   <link rel="icon" type="image/png" href="https://i.postimg.cc/nV7GHNZy/Logo3.png" />
   <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Verdana', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #fff5e6, #ffe0cc);
-      color: #333;
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
     }
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
+    body {
+      font-family: 'Geneva', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f3e7d9;
+      color: #333;
+      padding-top: 60px;
+      min-height: 100vh;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.5rem;
-      background: #fffaf5;
-      padding: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      flex-direction: column;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       z-index: 1000;
     }
-    nav button {
-      padding: 0.6rem 1.2rem;
-      background-color: #fce0c1;
-      border: none;
-      border-radius: 20px;
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .nav-logo {
       font-weight: bold;
+      color: #7c4a2e;
+      font-size: 1.2rem;
+    }
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
+    nav button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background: #f3e7d9;
+      border-radius: 8px;
       cursor: pointer;
-      transition: 0.3s;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
     }
     nav button:hover {
-      background-color: #f8cfa8;
+      background: #e3d6c5;
+    }
+    .burger {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #7c4a2e;
+    }
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: white;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 70%;
+      height: 100%;
+      box-shadow: 4px 0 8px rgba(0,0,0,0.1);
+      padding: 1rem;
+      z-index: 999;
+    }
+    .mobile-nav button {
+      margin-bottom: 1rem;
+      text-align: left;
+      font-weight: bold;
+      background: #f3e7d9;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .mobile-nav button:hover {
+      background: #e3d6c5;
+    }
+    .mobile-nav.active {
+      display: flex;
     }
     .carousel {
-      display: flex;
-      overflow-x: auto;
+      position: relative;
+      overflow: hidden;
+      height: 350px;
       max-width: 100%;
-      gap: 1rem;
-      padding: 1rem;
-      height: 400px;
-      margin-top: 5rem;
+      margin: 1rem auto 2rem;
+      border-radius: 0 0 1rem 1rem;
+      max-width: 1200px;
     }
     .carousel img {
-      height: 100%;
-      border-radius: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 100%;
+      object-fit: cover;
+      border-radius: 0 0 1rem 1rem;
+      transition: opacity 0.5s ease;
+      position: absolute;
+      top: 0; left: 0;
+      height: 350px;
+      opacity: 0;
+      z-index: 0;
+    }
+    .carousel img.active {
+      opacity: 1;
+      z-index: 1;
+      position: relative;
     }
     .section {
       display: none;
-      padding: 2rem;
+      padding: 1rem 1rem 2rem;
       max-width: 1200px;
-      margin: 2rem auto;
-      background-color: #fffdf8;
-      border-radius: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      margin: 0 auto 2rem;
+      flex-grow: 1;
     }
-    .active { display: block; }
-    #menu-list li, #cartItems li {
+    .active {
+      display: block;
+    }
+    ul.menu-list {
       list-style: none;
-      margin-bottom: 1.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    ul.menu-list li {
+      background: white;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1rem;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       gap: 1rem;
-      background: #fff3e6;
-      padding: 1rem;
-      border-radius: 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     }
-    #menu-list img, #cartItems img {
+    ul.menu-list img {
+      width: 80px;
       height: 80px;
-      border-radius: 0.5rem;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
     }
-    button.action {
-      background: #ffa166;
+    ul.menu-list .menu-info {
+      flex-grow: 1;
+    }
+    ul.menu-list .menu-info h3 {
+      margin-bottom: 0.3rem;
+      color: #7c4a2e;
+    }
+    ul.menu-list .menu-info p {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 0.5rem;
+    }
+    ul.menu-list button.add-btn {
+      background: #7c4a2e;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    ul.menu-list button.add-btn:hover {
+      background: #5a3a1a;
+    }
+    #cartItems {
+      list-style: none;
+      max-width: 600px;
+      margin: 0 auto 1rem;
+      padding-left: 0;
+    }
+    #cartItems li {
+      background: white;
+      border-radius: 10px;
+      padding: 0.7rem 1rem;
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    #cartItems li img {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    #cartItems li .cart-info {
+      flex-grow: 1;
+    }
+    #cartItems li .cart-info span {
+      display: block;
+      font-weight: bold;
+      color: #7c4a2e;
+      margin-bottom: 0.3rem;
+    }
+    #cartItems li .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    #cartItems li .qty-controls button {
+      background: #7c4a2e;
       color: white;
       border: none;
-      border-radius: 0.5rem;
-      padding: 0.4rem 0.8rem;
+      border-radius: 5px;
+      width: 25px;
+      height: 25px;
       cursor: pointer;
+      font-weight: bold;
+      line-height: 1;
+      padding: 0;
+      user-select: none;
+      transition: background-color 0.3s ease;
     }
-    button.action:hover {
-      background: #e78a52;
+    #cartItems li .qty-controls button:hover {
+      background: #5a3a1a;
     }
-    footer {
+    #cartTotal {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #7c4a2e;
       text-align: center;
-      padding: 1.5rem;
-      background-color: #fff0e0;
-      color: #8b5d3b;
-      margin-top: 2rem;
+      margin-bottom: 1rem;
     }
+    button#checkoutBtn {
+      display: block;
+      margin: 0 auto 2rem;
+      background: #7c4a2e;
+      color: white;
+      border: none;
+      padding: 0.7rem 2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button#checkoutBtn:hover {
+      background: #5a3a1a;
+    }
+    /* About, Contact sections styles */
+    #aboutContent, #contactContent {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* Адаптивність */
     @media (max-width: 768px) {
-      .carousel {
-        height: 250px;
+      nav {
+        display: none;
       }
-      nav button {
-        flex: 1 1 40%;
+      .burger {
+        display: block;
       }
       .section {
         padding: 1rem;
       }
-      #menu-list li, #cartItems li {
+      ul.menu-list li {
         flex-direction: column;
         align-items: flex-start;
       }
+      ul.menu-list img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+      #cartItems li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      #cartItems li img {
+        width: 100%;
+        height: auto;
+      }
+      #cartItems li .qty-controls {
+        margin-top: 0.5rem;
+      }
     }
+
   </style>
 </head>
 <body>
-  <nav>
-    <button onclick="showSection('home')">Головна</button>
-    <button onclick="showSection('menu')">Меню</button>
-    <button onclick="showSection('about')">Про нас</button>
-    <button onclick="showSection('contact')">Контакти</button>
-    <button onclick="showSection('cart')">Кошик</button>
-  </nav>
+  <header>
+    <div class="nav-container">
+      <div class="nav-logo">Shuhi Lab</div>
+      <button class="burger" onclick="toggleMenu()">☰ Меню</button>
+      <nav>
+        <button onclick="showSection('home')">Головна</button>
+        <button onclick="showSection('menu')">Меню</button>
+        <button onclick="showSection('about')">Про нас</button>
+        <button onclick="showSection('contact')">Контакти</button>
+        <button onclick="showSection('cart')">Кошик</button>
+      </nav>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <button onclick="showSection('home'); toggleMenu()">Головна</button>
+      <button onclick="showSection('menu'); toggleMenu()">Меню</button>
+      <button onclick="showSection('about'); toggleMenu()">Про нас</button>
+      <button onclick="showSection('contact'); toggleMenu()">Контакти</button>
+      <button onclick="showSection('cart'); toggleMenu()">Кошик</button>
+    </div>
+  </header>
 
   <div id="home" class="section active">
     <div class="carousel" id="carousel">
-      <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Слайд 1">
-      <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Слайд 2">
-      <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Слайд 3">
+      <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Слайд 1" class="active" />
+      <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Слайд 2" />
     </div>
   </div>
 
   <div id="menu" class="section">
     <h2>Меню</h2>
-    <ul id="menu-list"></ul>
+    <ul class="menu-list" id="menuList">
+      <!-- Приклад пункту меню -->
+      <li>
+        <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Філадельфія" />
+        <div class="menu-info">
+          <h3>Філадельфія</h3>
+          <p>Смачні суші з лососем, крем-сиром і авокадо.</p>
+        </div>
+        <button class="add-btn" onclick="addToCart('Філадельфія', 120, 'https://i.postimg.cc/6362Cmtt/bol.jpg')">Додати</button>
+      </li>
+      <li>
+        <img src="https://i.postimg.cc/6362Cmtt/bol.jpg" alt="Рол з тунцем" />
+        <div class="menu-info">
+          <h3>Рол з тунцем</h3>
+          <p>Свіжий рол з тунцем та овочами.</p>
+        </div>
+        <button class="add-btn" onclick="addToCart('Рол з тунцем', 120, 'https://i.postimg.cc/6362Cmtt/bol.jpg')">Додати</button>
+      </li>
+      <li>
+        <img src="https://i.postimg.cc/BnYdV2kG/burger.jpg" alt="Бургер" />
+        <div class="menu-info">
+          <h3>Бургер</h3>
+          <p>Соковитий бургер із сиром та соусом.</p>
+        </div>
+        <button class="add-btn" onclick="addToCart('Бургер', 90, 'https://i.postimg.cc/6362Cmtt/bol.jpg')">Додати</button>
+      </li>
+    </ul>
   </div>
 
   <div id="about" class="section">
     <h2>Про нас</h2>
-    <p>Shuhi Lab — поєднання традицій японської кухні та сучасного підходу до смаку й сервісу.</p>
+    <div id="aboutContent">
+      <p>Shuhi Lab — поєднання традицій японської кухні та сучасного підходу до смаку й сервісу.</p>
+    </div>
   </div>
 
   <div id="contact" class="section">
     <h2>Контакти</h2>
-    <p>м. Кривий Ріг</p>
-    <p>Телефон: 0 (98) 996 69 91</p>
-    <p>вул. Соборності 17</p>
-    <p>Доставка через Uklon</p>
+    <div id="contactContent">
+      <p>Телефон: +380 12 345 67 89</p>
+      <p>Email: info@shuhilab.com.ua</p>
+      <p>Адреса: вул. Смачна, 1, Київ, Україна</p>
+    </div>
   </div>
 
   <div id="cart" class="section">
     <h2>Кошик</h2>
     <ul id="cartItems"></ul>
-    <p><strong>Сума: <span id="cartTotal">0</span>₴</strong></p>
-    <button class="action" onclick="checkout()">Оплатити</button>
+    <div id="cartTotal">Всього: 0 грн</div>
+    <button id="checkoutBtn" onclick="checkout()">Оплатити</button>
   </div>
 
-  <footer>
-    <p>&copy; 2025 Shuhi Lab. Смачного.</p>
-  </footer>
+<script>
+  // Навігація по секціях
+  function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(sec => {
+      sec.classList.remove('active');
+    });
+    document.getElementById(sectionId).classList.add('active');
+    if(window.innerWidth <= 768) toggleMenu(false);
+  }
 
-  <script>
-    const menuItems = [
-      {
-        name: 'Філадельфія',
-        price: 150,
-        description: 'Класичний рол з лососем та вершковим сиром',
-        photo: 'https://i.postimg.cc/6362Cmtt/bol.jpg'
-      },
-      {
-        name: 'Каліфорнія',
-        price: 140,
-        description: 'Рол з крабом, авокадо і огірком',
-        photo: 'https://i.postimg.cc/6362Cmtt/bol.jpg'
-      }
-    ];
-
-    const cart = [];
-
-    function renderMenu() {
-      const list = document.getElementById('menu-list');
-      list.innerHTML = '';
-      menuItems.forEach((item, i) => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-          <img src="${item.photo}" alt="${item.name}" />
-          <div><strong>${item.name}</strong><br>${item.description}<br>${item.price}₴</div>
-          <button class="action" onclick="addToCart(${i})">Додати в кошик</button>
-        `;
-        list.appendChild(li);
-      });
+  // Мобільне меню
+  function toggleMenu(forceClose) {
+    const mobileNav = document.getElementById('mobileNav');
+    if(forceClose === false) {
+      mobileNav.classList.remove('active');
+      return;
     }
+    mobileNav.classList.toggle('active');
+  }
 
-    function addToCart(index) {
-      const item = menuItems[index];
-      const existing = cart.find(i => i.name === item.name);
-      if (existing) {
-        existing.qty++;
-      } else {
-        cart.push({ ...item, qty: 1 });
-      }
-      renderCart();
+  // Карусель
+  const carouselImages = document.querySelectorAll('#carousel img');
+  let currentSlide = 0;
+  function showSlide(index) {
+    carouselImages.forEach((img, i) => {
+      img.classList.toggle('active', i === index);
+    });
+  }
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % carouselImages.length;
+    showSlide(currentSlide);
+  }
+  setInterval(nextSlide, 4000);
+
+  // Кошик
+  let cart = [];
+
+  function addToCart(name, price, img) {
+    const found = cart.find(item => item.name === name);
+    if(found) {
+      found.qty++;
+    } else {
+      cart.push({name, price, qty:1, img});
     }
+    updateCartUI();
+    showSection('cart');
+  }
 
-    function updateQty(index, delta) {
-      cart[index].qty += delta;
-      if (cart[index].qty <= 0) cart.splice(index, 1);
-      renderCart();
-    }
-
-    function renderCart() {
-      const list = document.getElementById('cartItems');
-      list.innerHTML = '';
-      let total = 0;
-      cart.forEach((item, index) => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-          <img src="${item.photo}" alt="${item.name}" />
-          <div>
-            <strong>${item.name}</strong><br>
-            ${item.price}₴ x ${item.qty} = ${item.price * item.qty}₴<br>
-            <button class="action" onclick="updateQty(${index}, -1)">-1</button>
-            <button class="action" onclick="updateQty(${index}, 1)">+1</button>
+  function updateCartUI() {
+    const cartItems = document.getElementById('cartItems');
+    cartItems.innerHTML = '';
+    let total = 0;
+    cart.forEach((item, idx) => {
+      total += item.price * item.qty;
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <img src="${item.img}" alt="${item.name}" />
+        <div class="cart-info">
+          <span>${item.name}</span>
+          <div class="qty-controls">
+            <button onclick="changeQty(${idx}, -1)">-</button>
+            <span>${item.qty}</span>
+            <button onclick="changeQty(${idx}, 1)">+</button>
           </div>
-        `;
-        total += item.price * item.qty;
-        list.appendChild(li);
-      });
-      document.getElementById('cartTotal').textContent = total;
-    }
+        </div>
+      `;
+      cartItems.appendChild(li);
+    });
+    document.getElementById('cartTotal').textContent = `Всього: ${total} грн`;
+  }
 
-    function checkout() {
-      if (cart.length === 0) return;
-      cart.length = 0;
-      renderCart();
+  function changeQty(index, delta) {
+    cart[index].qty += delta;
+    if(cart[index].qty < 1) {
+      cart.splice(index, 1);
     }
+    updateCartUI();
+  }
 
-    function showSection(id) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
+  function checkout() {
+    // Проста оплата без підтвердження
+    cart = [];
+    updateCartUI();
+    alert('Дякуємо за замовлення!');
+    showSection('home');
+  }
+</script>
 
-    window.onload = () => {
-      showSection('home');
-      renderMenu();
-    };
-  </script>
 </body>
 </html>
