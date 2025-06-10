@@ -9,15 +9,15 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
-      background-color: #f8f8f8;
-      color: #333;
+      background-color: #121212;
+      color: #ffffff;
       padding-top: 60px;
     }
     header {
       position: fixed;
       top: 0; left: 0; width: 100%;
-      background: white;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background: #1e1e1e;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
       z-index: 1000;
     }
     .nav-container {
@@ -40,7 +40,7 @@
     nav button {
       background: none;
       border: none;
-      color: #333;
+      color: #fff;
       font-weight: bold;
       cursor: pointer;
       transition: color 0.3s;
@@ -59,9 +59,9 @@
       gap: 2rem;
     }
     .menu-item {
-      background: white;
+      background: #1e1e1e;
       border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -81,7 +81,7 @@
     }
     .menu-content p {
       font-size: 0.9rem;
-      color: #555;
+      color: #ccc;
     }
     .price {
       font-weight: bold;
@@ -108,11 +108,11 @@
       font-size: 1rem;
     }
     footer {
-      background: #f1f1f1;
+      background: #1e1e1e;
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
-      color: #777;
+      color: #999;
     }
   </style>
 </head>
@@ -123,6 +123,7 @@
       <nav>
         <button onclick="showSection('menu')">Меню</button>
         <button onclick="showSection('cart')">Кошик</button>
+        <button onclick="showSection('about')">Про нас</button>
       </nav>
     </div>
   </header>
@@ -138,6 +139,11 @@
     <button onclick="checkout()">Оформити замовлення</button>
   </section>
 
+  <section id="about" class="section" style="display:none;">
+    <h2>Про нас</h2>
+    <p>Sushi Lab — це місце, де традиції зустрічаються з сучасністю. Наші шефи створюють унікальні роли, використовуючи тільки найсвіжіші інгредієнти. Замовляй і насолоджуйся справжнім смаком Японії!</p>
+  </section>
+
   <footer>
     &copy; 2025 Sushi Lab | Створено з любов'ю на <a href="https://gptonline.ai/" target="_blank">GPTOnline.ai</a>
   </footer>
@@ -145,7 +151,10 @@
   <script>
     const menuItems = [
       { id: 1, name: 'Онi-Хана', description: 'Роли з лососем і авокадо', price: 310, img: 'https://i.postimg.cc/6362Cmtt/bol.jpg' },
-      { id: 2, name: 'Мідорі', description: 'Роли з зеленню', price: 278, img: 'https://i.postimg.cc/6362Cmtt/bol.jpg' }
+      { id: 2, name: 'Мідорі', description: 'Роли з зеленню', price: 278, img: 'https://i.postimg.cc/6362Cmtt/bol.jpg' },
+      { id: 3, name: 'Фудзі', description: 'Гострі роли з тунцем і огірком', price: 295, img: 'https://i.postimg.cc/6362Cmtt/bol.jpg' },
+      { id: 4, name: 'Сакура', description: 'Класичні роли з креветкою', price: 320, img: 'https://i.postimg.cc/6362Cmtt/bol.jpg' },
+      { id: 5, name: 'Юкі', description: 'Вегетаріанські роли з тофу', price: 260, img: 'https://i.postimg.cc/6362Cmtt/bol.jpg' }
     ];
     let cart = {};
 
@@ -206,8 +215,9 @@
     }
 
     function showSection(id) {
-      document.getElementById('menu').style.display = id === 'menu' ? 'block' : 'none';
-      document.getElementById('cart').style.display = id === 'cart' ? 'block' : 'none';
+      ['menu', 'cart', 'about'].forEach(sec => {
+        document.getElementById(sec).style.display = sec === id ? 'block' : 'none';
+      });
     }
 
     renderMenu();
