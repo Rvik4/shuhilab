@@ -9,14 +9,14 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
-      background-color: #001800; /* твій зелений фон */
+      background-color: #001800; /* Темно-зелений фон */
       color: #ffffff;
       padding-top: 60px;
     }
     header {
       position: fixed;
       top: 0; left: 0; width: 100%;
-      background: #002500; /* темніший зелений для хедера */
+      background: #1e1e1e;
       box-shadow: 0 4px 8px rgba(0,0,0,0.5);
       z-index: 1000;
     }
@@ -30,7 +30,7 @@
     }
     .nav-logo {
       font-weight: bold;
-      color: #e63946;
+      color: #000; /* Чорний колір для логотипу */
       font-size: 1.4rem;
     }
     nav {
@@ -53,13 +53,28 @@
       margin: 2rem auto;
       padding: 1rem;
     }
+    .category-buttons {
+      margin-bottom: 1rem;
+    }
+    .category-buttons button {
+      background: #1e1e1e;
+      border: none;
+      color: #fff;
+      margin-right: 10px;
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .category-buttons button:hover {
+      background: #e63946;
+    }
     .menu-list {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 2rem;
     }
     .menu-item {
-      background: #002500; /* темніший зелений для карточки */
+      background: #000; /* Чорний фон для картки товару */
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.4);
       overflow: hidden;
@@ -81,7 +96,7 @@
     }
     .menu-content p {
       font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.7); /* прозорий білий */
+      color: rgba(255, 255, 255, 0.7); /* Напівпрозорий білий */
     }
     .price {
       font-weight: bold;
@@ -96,7 +111,7 @@
     .qty-controls button {
       width: 32px;
       height: 32px;
-      background-color: #000; /* чорні кнопки */
+      background-color: #000; /* Чорні кнопки */
       border: none;
       color: white;
       font-size: 18px;
@@ -108,7 +123,7 @@
       font-size: 1rem;
     }
     footer {
-      background: #002500; /* темніший зелений для футера */
+      background: #1e1e1e;
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
@@ -129,6 +144,13 @@
   </header>
 
   <section id="menu" class="section">
+    <div class="category-buttons">
+      <button onclick="filterCategory('Бургери')">Бургери</button>
+      <button onclick="filterCategory('Гарячі роли')">Гарячі роли</button>
+      <button onclick="filterCategory('М\'ясні роли')">М'ясні роли</button>
+      <button onclick="filterCategory('Боли')">Боли</button>
+      <button onclick="filterCategory('Всі')">Всі</button>
+    </div>
     <div class="menu-list" id="menuList"></div>
   </section>
 
@@ -141,7 +163,7 @@
 
   <section id="about" class="section" style="display:none;">
     <h2>Про нас</h2>
-    <p>Тут буде інформація</p>
+    <p>Ми — Sushi Lab, ваш улюблений заклад для замовлення суші, ролів та інших смаколиків!</p>
   </section>
 
   <footer>
@@ -150,18 +172,20 @@
 
   <script>
     const menuItems = [
-      { id: 1, name: '...', description: '....', price: 310, img: 'https://i.postimg.cc/6362Cmtt/bol.jpg' },
-      { id: 2, name: '...', description: '....', price: 278, img: 'https://i.postimg.cc/6362Cmtt/bol.jpg' },
-      { id: 3, name: '...', description: '....', price: 295, img: 'https://i.postimg.cc/6362Cmtt/bol.jpg' },
-      { id: 4, name: '....', description: '...', price: 320, img: 'https://i.postimg.cc/6362Cmtt/bol.jpg' },
-      { id: 5, name: '....', description: '....', price: 260, img: 'https://i.postimg.cc/6362Cmtt/bol.jpg' }
+      { id: 1, category: 'Боли', name: '...', description: '....', price: 310, img: 'https://i.postimg.cc/6362Cmtt/bol.jpg' },
+      { id: 2, category: 'Боли', name: '...', description: '....', price: 278, img: 'https://i.postimg.cc/6362Cmtt/bol.jpg' },
+      { id: 3, category: 'Гарячі роли', name: '...', description: '....', price: 295, img: 'https://i.postimg.cc/6362Cmtt/bol.jpg' },
+      { id: 4, category: 'М\'ясні роли', name: '....', description: '...', price: 320, img: 'https://i.postimg.cc/6362Cmtt/bol.jpg' },
+      { id: 5, category: 'Бургери', name: '....', description: '....', price: 260, img: 'https://i.postimg.cc/6362Cmtt/bol.jpg' }
     ];
     let cart = {};
+    let currentCategory = 'Всі';
 
     function renderMenu() {
       const menuList = document.getElementById('menuList');
       menuList.innerHTML = '';
-      menuItems.forEach(item => {
+      const filteredItems = currentCategory === 'Всі' ? menuItems : menuItems.filter(item => item.category === currentCategory);
+      filteredItems.forEach(item => {
         const el = document.createElement('div');
         el.className = 'menu-item';
         el.innerHTML = `
@@ -179,6 +203,11 @@
         `;
         menuList.appendChild(el);
       });
+    }
+
+    function filterCategory(category) {
+      currentCategory = category;
+      renderMenu();
     }
 
     function changeQty(id, delta) {
