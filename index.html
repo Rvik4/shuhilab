@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ShuhiLab меню</title>
+<title>ShuhiLab Меню</title>
 <style>
   :root {
     --red: #e60012;
@@ -19,13 +19,6 @@
     background: var(--light-gray);
     color: var(--text-color);
   }
-  .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 20px auto;
-  }
-
-  /* МЕНЮ ВЕРХНЕЕ */
   header {
     background: var(--dark-blue);
     color: white;
@@ -37,38 +30,41 @@
     top: 0;
     z-index: 2000;
   }
-  .menu-left, .menu-right {
+  .logo {
+    font-weight: 700;
+    font-size: 24px;
+    user-select: none;
+  }
+  nav {
     display: flex;
     align-items: center;
     gap: 15px;
   }
-  .menu-btn {
+  nav button, nav a {
     cursor: pointer;
-    background: var(--red);
+    background: none;
     border: none;
     color: white;
     padding: 8px 16px;
     border-radius: 6px;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 14px;
+    text-decoration: none;
+    user-select: none;
     transition: background 0.3s;
   }
-  .menu-btn:hover {
-    background: #b3000f;
+  nav button:hover, nav a:hover {
+    background: var(--red);
   }
-  .menu-link {
-    color: white;
-    cursor: pointer;
-    font-weight: 600;
-    text-decoration: none;
-    font-size: 16px;
-    user-select: none;
+  nav button.active {
+    background: var(--red);
   }
-  .menu-link:hover {
-    text-decoration: underline;
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
   }
-
-  /* Секция с большими кнопками выбора раздела (главная) */
+  /* Главный экран с выбором раздела */
   #home-section {
     margin-top: 30px;
     display: flex;
@@ -89,8 +85,7 @@
   .big-btn:hover {
     background: var(--red);
   }
-
-  /* Секции с товарами */
+  /* Товары */
   .products {
     display: none;
     margin-top: 30px;
@@ -353,17 +348,17 @@
 <body>
 
 <header>
-  <div class="menu-left">
-    <button class="menu-btn" id="homeBtn">Головна</button>
-    <a href="#about" class="menu-link" id="aboutLink">Про нас</a>
-  </div>
-  <div class="menu-right">
-    <button class="menu-btn" id="cartToggleBtn">Кошик (<span id="cart-count-header">0</span>)</button>
-  </div>
+  <div class="logo">ShuhiLab</div>
+  <nav>
+    <button id="homeBtn" class="active">Головна</button>
+    <a href="#about" id="aboutLink">Про нас</a>
+    <a href="#contact" id="contactLink">Контакти</a>
+    <button id="cartToggleBtn">Кошик (<span id="cart-count-header">0</span>)</button>
+  </nav>
 </header>
 
 <div class="container">
-  <!-- Главная секция с большими кнопками -->
+  <!-- Главный экран с выбором раздела -->
   <div id="home-section">
     <button class="big-btn" data-section="wok">WOK</button>
     <button class="big-btn" data-section="rolls">Роли</button>
@@ -373,7 +368,7 @@
   <!-- Секции с товарами -->
   <div id="wok" class="products">
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb3a" alt="WOK курка" />
+      <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb3a?auto=format&fit=crop&w=400&q=80" alt="WOK курка" />
       <div class="card-content">
         <div class="weight">350 г</div>
         <div class="cashback">Кешбек від 5%</div>
@@ -386,11 +381,25 @@
         <button class="btn-cart" onclick="addToCart('WOK курка',149)">В кошик</button>
       </div>
     </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1543362906-50f35f0a40b1?auto=format&fit=crop&w=400&q=80" alt="WOK овочі" />
+      <div class="card-content">
+        <div class="weight">300 г</div>
+        <div class="cashback">Кешбек від 5%</div>
+        <div class="title">WOK овочі</div>
+        <div class="description">Смажені овочі з соєвим соусом і кунжутом.</div>
+        <div class="prices">
+          <div class="price-new">129 грн</div>
+          <div class="price-old">150 грн</div>
+        </div>
+        <button class="btn-cart" onclick="addToCart('WOK овочі',129)">В кошик</button>
+      </div>
+    </div>
   </div>
 
   <div id="rolls" class="products">
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1617191517000-8b1b1b845a70" alt="Філадельфія" />
+      <img src="https://images.unsplash.com/photo-1617191517000-8b1b1b845a70?auto=format&fit=crop&w=400&q=80" alt="Філадельфія" />
       <div class="card-content">
         <div class="weight">270 г</div>
         <div class="cashback">Кешбек від 5%</div>
@@ -404,7 +413,7 @@
       </div>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1582450871972-ab5ca641643d" alt="Каліфорнія" />
+      <img src="https://images.unsplash.com/photo-1582450871972-ab5ca641643d?auto=format&fit=crop&w=400&q=80" alt="Каліфорнія" />
       <div class="card-content">
         <div class="weight">300 г</div>
         <div class="cashback">Кешбек від 5%</div>
@@ -421,7 +430,7 @@
 
   <div id="sets" class="products">
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1584978145932-30dbd0d33059" alt="Сет Сінсей" />
+      <img src="https://images.unsplash.com/photo-1584978145932-30dbd0d33059?auto=format&fit=crop&w=400&q=80" alt="Сет Сінсей" />
       <div class="card-content">
         <div class="weight">1080 г</div>
         <div class="cashback">Кешбек від 5%</div>
@@ -432,6 +441,20 @@
           <div class="price-old">806 грн</div>
         </div>
         <button class="btn-cart" onclick="addToCart('Сет Сінсей',699)">В кошик</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Сет Кіото" />
+      <div class="card-content">
+        <div class="weight">1200 г</div>
+        <div class="cashback">Кешбек від 5%</div>
+        <div class="title">Сет Кіото</div>
+        <div class="description">Різні роли з лососем, тунцем та крабом.</div>
+        <div class="prices">
+          <div class="price-new">899 грн</div>
+          <div class="price-old">1050 грн</div>
+        </div>
+        <button class="btn-cart" onclick="addToCart('Сет Кіото',899)">В кошик</button>
       </div>
     </div>
   </div>
@@ -463,17 +486,24 @@
 </div>
 
 <script>
-  // Показывать/скрывать разделы
   const homeSection = document.getElementById("home-section");
   const productSections = {
     wok: document.getElementById("wok"),
     rolls: document.getElementById("rolls"),
     sets: document.getElementById("sets"),
   };
+  const homeBtn = document.getElementById("homeBtn");
+  const navButtons = document.querySelectorAll("nav button");
+
+  function setActiveNav(button) {
+    navButtons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+  }
 
   function showHome() {
     homeSection.style.display = "flex";
-    Object.values(productSections).forEach(s => (s.classList.remove("active")));
+    Object.values(productSections).forEach(s => s.classList.remove("active"));
+    setActiveNav(homeBtn);
   }
 
   function showSection(name) {
@@ -482,9 +512,10 @@
       if(key === name) section.classList.add("active");
       else section.classList.remove("active");
     });
+    setActiveNav(homeBtn);
   }
 
-  // Обработчики для больших кнопок выбора раздела
+  // Обработка кликов на большие кнопки
   document.querySelectorAll(".big-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       showSection(btn.dataset.section);
@@ -492,7 +523,7 @@
   });
 
   // Кнопка Головна
-  document.getElementById("homeBtn").addEventListener("click", () => {
+  homeBtn.addEventListener("click", () => {
     showHome();
   });
 
@@ -513,6 +544,114 @@
   function updateCart() {
     cartItemsElem.innerHTML = "";
     let total = 0;
+    let totalCount = 0;
+
     cart.forEach((item, idx) => {
       total += item.price * item.quantity;
-      const
+      totalCount += item.quantity;
+
+      const div = document.createElement("div");
+      div.className = "cart-item";
+
+      div.innerHTML = `
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">${item.price} грн</div>
+        <div class="quantity-controls">
+          <button onclick="changeQuantity(${idx}, -1)">-</button>
+          <span>${item.quantity}</span>
+          <button onclick="changeQuantity(${idx}, 1)">+</button>
+        </div>
+      `;
+
+      cartItemsElem.appendChild(div);
+    });
+
+    cartCountElem.textContent = totalCount;
+    cartCountHeader.textContent = totalCount;
+    totalPriceElem.textContent = total.toFixed(2);
+    checkoutBtn.disabled = totalCount === 0;
+    saveCart();
+  }
+
+  function changeQuantity(index, delta) {
+    cart[index].quantity += delta;
+    if (cart[index].quantity <= 0) {
+      cart.splice(index, 1);
+    }
+    updateCart();
+  }
+
+  function addToCart(name, price) {
+    const found = cart.find(item => item.name === name);
+    if (found) {
+      found.quantity++;
+    } else {
+      cart.push({name, price, quantity:1});
+    }
+    updateCart();
+    alert(`Додано "${name}" до кошика!`);
+  }
+
+  // Открытие и закрытие корзины
+  const cartToggleBtn = document.getElementById("cartToggleBtn");
+  cartToggleBtn.addEventListener("click", toggleCart);
+
+  function toggleCart() {
+    const isActive = cartElem.classList.contains("active");
+    if (isActive) {
+      closeCart();
+    } else {
+      openCart();
+    }
+  }
+
+  function openCart() {
+    cartElem.classList.add("active");
+    overlay.classList.add("active");
+  }
+
+  function closeCart() {
+    cartElem.classList.remove("active");
+    overlay.classList.remove("active");
+  }
+
+  function closeAll() {
+    closeCart();
+    closeCheckout();
+  }
+
+  // Оформление заказа
+  const checkoutModal = document.getElementById("checkout-modal");
+
+  function openCheckout() {
+    if(cart.length === 0) return;
+    checkoutModal.classList.add("active");
+    overlay.classList.add("active");
+  }
+
+  function closeCheckout() {
+    checkoutModal.classList.remove("active");
+    overlay.classList.remove("active");
+  }
+
+  function sendOrder() {
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    if (!name || !phone) {
+      alert("Будь ласка, заповніть ім'я та телефон.");
+      return;
+    }
+    alert(`Дякуємо за замовлення, ${name}!\nМи зв'яжемося з вами за номером ${phone}.`);
+    cart = [];
+    updateCart();
+    closeCheckout();
+    closeCart();
+  }
+
+  // Инициализация
+  updateCart();
+  showHome();
+</script>
+
+</body>
+</html>
