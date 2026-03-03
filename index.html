@@ -8,8 +8,8 @@
   :root {
     --red: #e60012;
     --dark-blue: #0a1f55;
-    --light-gray: #f9f9f9;
-    --text-color: #222;
+    --light-gray: #d9f0d9; /* мягкий зелёный фон */
+    --text-color: #fff;
   }
   body {
     margin: 0;
@@ -28,16 +28,8 @@
     top: 0;
     z-index: 2000;
   }
-  .logo {
-    font-weight: 700;
-    font-size: 24px;
-    user-select: none;
-  }
-  nav {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
+  .logo { font-weight: 700; font-size: 24px; user-select: none; }
+  nav { display: flex; align-items: center; gap: 15px; }
   nav button, nav a {
     cursor: pointer;
     background: none;
@@ -51,12 +43,8 @@
     user-select: none;
     transition: background 0.3s;
   }
-  nav button:hover, nav a:hover {
-    background: var(--red);
-  }
-  nav button.active {
-    background: var(--red);
-  }
+  nav button:hover, nav a:hover { background: var(--red); }
+  nav button.active { background: var(--red); }
   #info-message {
     text-align: center;
     padding: 12px 0;
@@ -65,12 +53,7 @@
     font-weight: 600;
     display: none;
   }
-  #home-section {
-    margin-top: 30px;
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-  }
+  #home-section { margin-top: 30px; display: flex; gap: 30px; justify-content: center; }
   .big-btn {
     background: var(--dark-blue);
     color: white;
@@ -82,9 +65,8 @@
     user-select: none;
     transition: background 0.3s;
   }
-  .big-btn:hover {
-    background: var(--red);
-  }
+  .big-btn:hover { background: var(--red); }
+
   .products {
     display: none;
     margin: 30px auto;
@@ -93,52 +75,29 @@
     grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
     display: grid;
   }
-  .products.active {
-    display: grid;
-  }
+  .products.active { display: grid; }
+
   .card {
     position: relative;
-    background: white;
+    background: white; /* убрали PNG */
     border-radius: 10px;
     box-shadow: 0 3px 7px rgb(0 0 0 / 0.1);
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    color: #222;
   }
-  .card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-  }
+  .card img { width: 100%; height: 180px; object-fit: cover; }
   .card-content {
     padding: 15px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
   }
-  .weight {
-    font-size: 14px;
-    margin-bottom: 6px;
-    color: #555;
-  }
-  .title {
-    font-weight: 700;
-    font-size: 18px;
-    margin-bottom: 6px;
-    text-transform: uppercase;
-  }
-  .description {
-    font-size: 13px;
-    color: #777;
-    flex-grow: 1;
-    margin-bottom: 10px;
-  }
-  .prices {
-    font-weight: 700;
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: var(--red);
-  }
+  .weight { font-size: 14px; margin-bottom: 6px; color: #555; }
+  .title { font-weight: 700; font-size: 18px; margin-bottom: 6px; text-transform: uppercase; }
+  .description { font-size: 13px; color: #777; flex-grow: 1; margin-bottom: 10px; }
+  .prices { font-weight: 700; font-size: 16px; margin-bottom: 10px; color: var(--red); }
   .btn-cart {
     background: var(--red);
     border: none;
@@ -149,9 +108,9 @@
     cursor: pointer;
     transition: background 0.3s;
   }
-  .btn-cart:hover {
-    background: #b3000f;
-  }
+  .btn-cart:hover { background: #b3000f; }
+
+  /* КОРЗИНА */
   .cart {
     position: fixed;
     top: 0;
@@ -166,157 +125,38 @@
     z-index: 10000;
     display: flex;
     flex-direction: column;
+    color: #222;
   }
-  .cart.active {
-    transform: translateX(0);
-  }
-  .cart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-  }
-  .cart-header h2 {
-    margin: 0;
-    font-size: 20px;
-    color: var(--dark-blue);
-  }
-  .close-cart {
-    cursor: pointer;
-    font-size: 24px;
-    color: var(--red);
-    font-weight: bold;
-    user-select: none;
-  }
-  #cart-items {
-    flex-grow: 1;
-    overflow-y: auto;
-    margin-bottom: 10px;
-  }
-  .cart-item {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-    display: flex;
-    flex-direction: column;
-  }
-  .cart-item-name {
-    font-weight: 700;
-    margin-bottom: 5px;
-  }
-  .cart-item-price {
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--red);
-  }
-  .quantity-controls {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
+  .cart.active { transform: translateX(0); }
+  .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+  .cart-header h2 { margin: 0; font-size: 20px; color: var(--dark-blue); }
+  .close-cart { cursor: pointer; font-size: 24px; color: var(--red); font-weight: bold; user-select: none; }
+  #cart-items { flex-grow: 1; overflow-y: auto; margin-bottom: 10px; }
+  .cart-item { border-bottom: 1px solid #ddd; padding: 10px 0; display: flex; flex-direction: column; }
+  .cart-item-name { font-weight: 700; margin-bottom: 5px; }
+  .cart-item-price { font-weight: 600; margin-bottom: 8px; color: var(--red); }
+  .quantity-controls { display: flex; gap: 10px; align-items: center; }
   .quantity-controls button {
-    width: 28px;
-    height: 28px;
-    border: none;
-    background: var(--red);
-    color: white;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
+    width: 28px; height: 28px; border: none;
+    background: var(--red); color: white; font-weight: bold;
+    border-radius: 4px; cursor: pointer;
   }
-  .quantity-controls span {
-    font-weight: 700;
-    min-width: 20px;
-    text-align: center;
-  }
-  .cart-total {
-    font-weight: 700;
-    font-size: 18px;
-    margin-bottom: 15px;
-    color: var(--dark-blue);
-  }
-  .checkout-btn {
-    background: var(--red);
-    border: none;
-    color: white;
-    font-weight: 700;
-    padding: 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  .checkout-btn:hover {
-    background: #b3000f;
-  }
-  .overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease;
-    z-index: 9999;
-  }
-  .overlay.active {
-    opacity: 1;
-    visibility: visible;
-  }
-  .modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
-    justify-content: center;
-    align-items: center;
-    z-index: 11000;
-  }
-  .modal.active {
-    display: flex;
-  }
-  .modal-content {
-    background: white;
-    padding: 30px;
-    width: 350px;
-    border-radius: 12px;
-    position: relative;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-  }
-  .modal-content h3 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: var(--dark-blue);
-  }
-  .modal-content input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 15px;
-  }
-  .modal-content button {
-    width: 100%;
-    padding: 12px;
-    background: var(--red);
-    border: none;
-    color: white;
-    font-weight: 700;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  .modal-content button:hover {
-    background: #b3000f;
-  }
-  .close-modal {
-    position: absolute;
-    right: 15px;
-    top: 12px;
-    font-size: 24px;
-    cursor: pointer;
-    color: var(--red);
-    user-select: none;
-  }
+  .quantity-controls span { font-weight: 700; min-width: 20px; text-align: center; }
+  .cart-total { font-weight: 700; font-size: 18px; margin-bottom: 15px; color: var(--dark-blue); }
+  .checkout-btn { background: var(--red); border: none; color: white; font-weight: 700; padding: 12px; border-radius: 8px; cursor: pointer; transition: background 0.3s; }
+  .checkout-btn:hover { background: #b3000f; }
+
+  .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); opacity: 0; visibility: hidden; transition: opacity 0.3s ease; z-index: 9999; }
+  .overlay.active { opacity: 1; visibility: visible; }
+
+  .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 11000; }
+  .modal.active { display: flex; }
+  .modal-content { background: white; padding: 30px; width: 350px; border-radius: 12px; position: relative; box-shadow: 0 6px 15px rgba(0,0,0,0.3); }
+  .modal-content h3 { margin-top: 0; margin-bottom: 15px; color: var(--dark-blue); }
+  .modal-content input { width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #ccc; font-size: 15px; }
+  .modal-content button { width: 100%; padding: 12px; background: var(--red); border: none; color: white; font-weight: 700; font-size: 16px; border-radius: 8px; cursor: pointer; transition: background 0.3s; }
+  .modal-content button:hover { background: #b3000f; }
+  .close-modal { position: absolute; right: 15px; top: 12px; font-size: 24px; cursor: pointer; color: var(--red); user-select: none; }
 </style>
 </head>
 <body>
@@ -380,10 +220,84 @@
   </div>
 </div>
 
-<!-- Корзина и модалки остаются как ранее -->
+<!-- Корзина -->
+<div class="cart" id="cart">
+  <div class="cart-header">
+    <h2>Ваш кошик (<span id="cart-count">0</span>)</h2>
+    <div class="close-cart" onclick="toggleCart()">×</div>
+  </div>
+  <div id="cart-items"></div>
+  <div class="cart-total">Сума: <span id="total-price">0</span> грн</div>
+  <button class="checkout-btn" onclick="openCheckout()" id="checkoutBtn" disabled>Оформити замовлення</button>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeAll()"></div>
+
+<!-- Модалка оформления -->
+<div class="modal" id="checkout-modal">
+  <div class="modal-content">
+    <div class="close-modal" onclick="closeCheckout()">×</div>
+    <h3>Оформлення замовлення</h3>
+    <input type="text" id="name" placeholder="Ім'я" required />
+    <input type="tel" id="phone" placeholder="Телефон" required />
+    <input type="text" id="address" placeholder="Адреса" />
+    <button onclick="sendOrder()">Відправити замовлення</button>
+  </div>
+</div>
 
 <script>
-  // Здесь весь JS для меню, корзины и оформления заказа как раньше, без изменений
+  // JS для меню, корзины и заказов
+  const homeSection = document.getElementById("home-section");
+  const productSections = { wok: document.getElementById("wok"), rolls: document.getElementById("rolls"), sets: document.getElementById("sets") };
+  const homeBtn = document.getElementById("homeBtn");
+  const navButtons = document.querySelectorAll("nav button");
+  const infoMessage = document.getElementById("info-message");
+  const aboutLink = document.getElementById("aboutLink");
+  const contactLink = document.getElementById("contactLink");
+
+  function setActiveNav(button){ navButtons.forEach(btn=>btn.classList.remove("active")); if(button) button.classList.add("active"); clearInfo(); }
+  function showHome(){ homeSection.style.display="flex"; Object.values(productSections).forEach(s=>s.classList.remove("active")); setActiveNav(homeBtn); }
+  function showSection(name){ homeSection.style.display="none"; Object.entries(productSections).forEach(([k,s])=>{ k===name?s.classList.add("active"):s.classList.remove("active"); }); setActiveNav(homeBtn); }
+  document.querySelectorAll(".big-btn").forEach(btn=>btn.addEventListener("click",()=>{ showSection(btn.dataset.section); clearInfo(); }));
+  homeBtn.addEventListener("click",()=>showHome());
+  aboutLink.addEventListener("click",e=>{ e.preventDefault(); infoMessage.style.display="block"; infoMessage.textContent="Ласкаво просимо до ShuhiLab! Ми готуємо смачні роли та WOK."; Object.values(productSections).forEach(s=>s.classList.remove("active")); homeSection.style.display="none"; });
+  contactLink.addEventListener("click",e=>{ e.preventDefault(); infoMessage.style.display="block"; infoMessage.textContent="Зв'яжіться з нами: +380 00 000 0000 або info@shuhilab.ua"; Object.values(productSections).forEach(s=>s.classList.remove("active")); homeSection.style.display="none"; });
+  function clearInfo(){ infoMessage.style.display="none"; infoMessage.textContent=""; }
+
+  // КОРЗИНА
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const cartElem=document.getElementById("cart");
+  const cartCountElem=document.getElementById("cart-count");
+  const cartCountHeader=document.getElementById("cart-count-header");
+  const cartItemsElem=document.getElementById("cart-items");
+  const totalPriceElem=document.getElementById("total-price");
+  const checkoutBtn=document.getElementById("checkoutBtn");
+  const overlay=document.getElementById("overlay");
+
+  function saveCart(){ localStorage.setItem("cart",JSON.stringify(cart)); }
+  function updateCart(){
+    cartItemsElem.innerHTML=""; let total=0,totalCount=0;
+    cart.forEach((item,idx)=>{ total+=item.price*item.quantity; totalCount+=item.quantity; const div=document.createElement("div"); div.className="cart-item"; div.innerHTML=`<div class="cart-item-name">${item.name}</div><div class="cart-item-price">${item.price} грн</div><div class="quantity-controls"><button onclick="changeQuantity(${idx},-1)">-</button><span>${item.quantity}</span><button onclick="changeQuantity(${idx},1)">+</button></div>`; cartItemsElem.appendChild(div); });
+    cartCountElem.textContent=totalCount; cartCountHeader.textContent=totalCount; totalPriceElem.textContent=total.toFixed(2); checkoutBtn.disabled = totalCount===0; saveCart();
+  }
+  function changeQuantity(idx,delta){ cart[idx].quantity+=delta; if(cart[idx].quantity<=0) cart.splice(idx,1); updateCart(); }
+  function addToCart(name,price){ const f=cart.find(i=>i.name===name); f?f.quantity++:cart.push({name,price,quantity:1}); updateCart(); alert(`Додано "${name}" до кошика!`); }
+  function toggleCart(){ cartElem.classList.contains("active")?closeCart():openCart(); }
+  function openCart(){ cartElem.classList.add("active"); overlay.classList.add("active"); }
+  function closeCart(){ cartElem.classList.remove("active"); overlay.classList.remove("active"); }
+  function closeAll(){ closeCart(); closeCheckout(); }
+
+  // Оформление заказа
+  const checkoutModal=document.getElementById("checkout-modal");
+  function openCheckout(){ if(cart.length===0)return; checkoutModal.classList.add("active"); overlay.classList.add("active"); }
+  function closeCheckout(){ checkoutModal.classList.remove("active"); overlay.classList.remove("active"); }
+  function sendOrder(){ const name=document.getElementById("name").value.trim(), phone=document.getElementById("phone").value.trim(), address=document.getElementById("address").value.trim(); if(!name||!phone){alert("Будь ласка, заповніть ім'я та телефон."); return;} alert(`Дякуємо за замовлення, ${name}!\nМи зв'яжемося з вами за номером ${phone}.\nАдреса доставки: ${address}`); cart=[]; updateCart(); closeCheckout(); closeCart(); }
+
+  document.getElementById("cartToggleBtn").addEventListener("click",toggleCart);
+  overlay.addEventListener("click",closeAll);
+
+  updateCart();
+  showHome();
 </script>
 </body>
 </html>
