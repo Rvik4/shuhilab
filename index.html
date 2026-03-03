@@ -6,27 +6,28 @@
 <title>ShuhiLab</title>
 
 <style>
-:root {
-  --green-bg:#2e7d5b;
-  --green-light:#3f9a72;
-  --bone:#f1e8d8;
-  --white:#ffffff;
+:root{
+--green-bg:#2e7d5b;
+--green-light:#3f9a72;
+--bone:#f1e8d8;
+--white:#ffffff;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-body{background:var(--green-bg);color:white;overflow-x:hidden;}
+body{background:var(--green-bg);color:white;}
+
 .container{width:90%;max-width:1200px;margin:auto;}
 
 header{padding:20px 0;}
 .nav{display:flex;justify-content:space-between;align-items:center;}
 .logo{font-size:24px;font-weight:bold;color:var(--bone);}
-.nav-links a{color:white;margin-left:20px;cursor:pointer;text-decoration:none;transition:.3s;}
+.nav-links a{color:white;margin-left:20px;cursor:pointer;text-decoration:none;}
 .nav-links a:hover{color:var(--bone);}
 
 /* PRODUCTS */
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:25px;
 padding-bottom:60px;
 }
@@ -34,39 +35,45 @@ padding-bottom:60px;
 .card{
 background:var(--green-light);
 border-radius:15px;
-padding:20px;
-transform:translateY(20px);
-opacity:0;
-animation:fadeUp .6s forwards;
+overflow:hidden;
+display:flex;
+flex-direction:column;
 }
 
-.card:nth-child(2){animation-delay:.1s;}
-.card:nth-child(3){animation-delay:.2s;}
-
-@keyframes fadeUp{
-to{transform:translateY(0);opacity:1;}
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+display:block;
 }
 
-.card h3{color:var(--bone);}
-.price{margin:10px 0;font-weight:bold;}
+.card-content{
+padding:15px;
+flex:1;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+}
+
+.card h3{color:var(--bone);margin-bottom:5px;}
+.price{margin:8px 0;font-weight:bold;}
 
 .card button{
-width:100%;
-padding:8px;
+margin-top:auto;
+padding:10px;
 border:none;
 border-radius:8px;
 background:var(--bone);
 color:var(--green-bg);
 font-weight:bold;
 cursor:pointer;
-transition:.3s;
+transition:.2s;
 }
 
-.card button:active{
-transform:scale(.95);
-}
+.card button:hover{opacity:.9;}
+.card button:active{transform:scale(.97);}
 
-/* CART PANEL */
+/* CART */
 .cart{
 position:fixed;
 top:0;
@@ -76,14 +83,12 @@ height:100%;
 background:var(--green-light);
 padding:20px;
 transform:translateX(100%);
-transition:.4s cubic-bezier(.77,0,.18,1);
+transition:.4s;
 z-index:1001;
 overflow-y:auto;
 }
 
-.cart.active{
-transform:translateX(0);
-}
+.cart.active{transform:translateX(0);}
 
 .overlay{
 position:fixed;
@@ -104,12 +109,6 @@ visibility:visible;
 margin-bottom:15px;
 border-bottom:1px solid rgba(255,255,255,.2);
 padding-bottom:10px;
-animation:fadeIn .3s ease;
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:translateX(20px);}
-to{opacity:1;transform:translateX(0);}
 }
 
 .quantity-controls{
@@ -156,12 +155,6 @@ background:var(--green-light);
 padding:25px;
 width:300px;
 border-radius:12px;
-animation:pop .3s ease;
-}
-
-@keyframes pop{
-from{transform:scale(.8);opacity:0;}
-to{transform:scale(1);opacity:1;}
 }
 
 .modal input{
@@ -198,21 +191,30 @@ cursor:pointer;
 <div class="products">
 
 <div class="card">
+<img src="https://images.unsplash.com/photo-1617191517000-8b1b1b845a70" alt="">
+<div class="card-content">
 <h3>Філадельфія</h3>
 <div class="price">199 грн</div>
 <button onclick="addToCart('Філадельфія',199)">В кошик</button>
 </div>
+</div>
 
 <div class="card">
+<img src="https://images.unsplash.com/photo-1582450871972-ab5ca641643d" alt="">
+<div class="card-content">
 <h3>Каліфорнія</h3>
 <div class="price">179 грн</div>
 <button onclick="addToCart('Каліфорнія',179)">В кошик</button>
 </div>
+</div>
 
 <div class="card">
+<img src="https://images.unsplash.com/photo-1607301405390-66e0d2e3f5c3" alt="">
+<div class="card-content">
 <h3>Сет ShuhiLab</h3>
 <div class="price">599 грн</div>
 <button onclick="addToCart('Сет ShuhiLab',599)">В кошик</button>
+</div>
 </div>
 
 </div>
@@ -240,12 +242,15 @@ cursor:pointer;
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function saveCart(){ localStorage.setItem("cart", JSON.stringify(cart)); }
+function saveCart(){
+localStorage.setItem("cart",JSON.stringify(cart));
+}
 
 function updateCart(){
 const cartItems=document.getElementById("cart-items");
 const totalPrice=document.getElementById("total-price");
 const cartCount=document.getElementById("cart-count");
+
 cartItems.innerHTML="";
 let total=0;
 
@@ -292,31 +297,7 @@ document.getElementById("checkout-modal").style.display="flex";
 }
 
 async function sendOrder(){
-const name=document.getElementById("name").value;
-const phone=document.getElementById("phone").value;
-const address=document.getElementById("address").value;
-
-let message=`🛒 НОВЕ ЗАМОВЛЕННЯ\n\n`;
-cart.forEach(item=>{
-message+=`${item.name} x${item.quantity}\n`;
-});
-message+=`\nСума: ${document.getElementById("total-price").innerText} грн\n\nІм'я: ${name}\nТелефон: ${phone}\nАдреса: ${address}`;
-
-const BOT_TOKEN="YOUR_BOT_TOKEN";
-const CHAT_ID="YOUR_CHAT_ID";
-
-await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({chat_id:CHAT_ID,text:message})
-});
-
-alert("Замовлення відправлено!");
-cart=[];
-saveCart();
-updateCart();
-document.getElementById("checkout-modal").style.display="none";
-toggleCart();
+alert("Не забудь вставити BOT_TOKEN і CHAT_ID");
 }
 
 updateCart();
