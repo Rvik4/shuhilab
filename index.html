@@ -57,6 +57,14 @@
   nav button.active {
     background: var(--red);
   }
+  #info-message {
+    text-align: center;
+    padding: 12px 0;
+    background: #fff5f5;
+    color: var(--red);
+    font-weight: 600;
+    display: none;
+  }
   /* Главный экран с выбором раздела */
   #home-section {
     margin-top: 30px;
@@ -89,7 +97,9 @@
     display: grid;
   }
   .card {
-    background: white;
+    position: relative;
+    background: white url('https://i.ibb.co/2k9tNRg/bg-png.png') no-repeat center bottom;
+    background-size: contain;
     border-radius: 10px;
     box-shadow: 0 3px 7px rgb(0 0 0 / 0.1);
     display: flex;
@@ -322,11 +332,13 @@
   <div class="logo">ShuhiLab</div>
   <nav>
     <button id="homeBtn" class="active">Головна</button>
-    <a href="javascript:void(0)" id="aboutLink">Про нас</a>
-    <a href="javascript:void(0)" id="contactLink">Контакти</a>
+    <a href="#" id="aboutLink">Про нас</a>
+    <a href="#" id="contactLink">Контакти</a>
     <button id="cartToggleBtn">Кошик (<span id="cart-count-header">0</span>)</button>
   </nav>
 </header>
+
+<div id="info-message"></div>
 
 <div class="container">
   <!-- Главный экран с выбором раздела -->
@@ -441,10 +453,14 @@
   };
   const homeBtn = document.getElementById("homeBtn");
   const navButtons = document.querySelectorAll("nav button");
+  const infoMessage = document.getElementById("info-message");
+  const aboutLink = document.getElementById("aboutLink");
+  const contactLink = document.getElementById("contactLink");
 
   function setActiveNav(button) {
     navButtons.forEach(btn => btn.classList.remove("active"));
     button.classList.add("active");
+    clearInfo();
   }
 
   function showHome() {
@@ -466,22 +482,52 @@
   document.querySelectorAll(".big-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       showSection(btn.dataset.section);
+      clearInfo();
     });
   });
 
   // Кнопка Головна
   homeBtn.addEventListener("click", () => {
     showHome();
+    clearInfo();
   });
 
-  // --- КОРЗИНА ---
+  // Обработка кликов по Про нас и Контакти
+  aboutLink.addEventListener("click", e => {
+    e.preventDefault();
+    infoMessage.style.display = "block";
+    infoMessage.textContent = "Ласкаво просимо до ShuhiLab! Ми готуємо смачні роли та WOK.";
+    clearProductSections();
+    setActiveNav(null);
+  });
+
+  contactLink.addEventListener("click", e => {
+    e.preventDefault();
+    infoMessage.style.display = "block";
+    infoMessage.textContent = "Зв'яжіться з нами: +380 00 000 0000 або info@shuhilab.ua";
+    clearProductSections();
+    setActiveNav(null);
+  });
+
+  function clearInfo() {
+    infoMessage.style.display = "none";
+    infoMessage.textContent = "";
+  }
+
+  function clearProductSections() {
+    homeSection.style.display = "none";
+    Object.values(productSections).forEach(s => s.classList.remove("active"));
+  }
+
+  // КОРЗИНА (без изменений)
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const cartElem = document.getElementById("cart");
   const cartCountElem = document.getElementById("cart-count");
   const cartCountHeader = document.getElementById("cart-count-header");
   const cartItemsElem = document.getElementById("cart-items");
   const totalPriceElem = document.getElementById("total-price");
   const checkoutBtn = document.getElementById("checkoutBtn");
-  const cartElem = document.getElementById("cart");
   const overlay = document.getElementById("overlay");
 
   function saveCart() {
@@ -492,14 +538,11 @@
     cartItemsElem.innerHTML = "";
     let total = 0;
     let totalCount = 0;
-
     cart.forEach((item, idx) => {
       total += item.price * item.quantity;
       totalCount += item.quantity;
-
       const div = document.createElement("div");
       div.className = "cart-item";
-
       div.innerHTML = `
         <div class="cart-item-name">${item.name}</div>
         <div class="cart-item-price">${item.price} грн</div>
@@ -509,10 +552,8 @@
           <button onclick="changeQuantity(${idx}, 1)">+</button>
         </div>
       `;
-
       cartItemsElem.appendChild(div);
     });
-
     cartCountElem.textContent = totalCount;
     cartCountHeader.textContent = totalCount;
     totalPriceElem.textContent = total.toFixed(2);
@@ -584,20 +625,17 @@
   function sendOrder() {
     const name = document.getElementById("name").value.trim();
     const phone = document.getElementById("phone").value.trim();
+    const address = document.getElementById("address").value.trim();
     if (!name || !phone) {
       alert("Будь ласка, заповніть ім'я та телефон.");
       return;
     }
-    alert(`Дякуємо за замовлення, ${name}!\nМи зв'яжемося з вами за номером ${phone}.`);
+    alert(`Дякуємо за замовлення, ${name}!\nМи зв'яжемося з вами за номером ${phone}.\nАдреса доставки: ${address}`);
     cart = [];
     updateCart();
     closeCheckout();
     closeCart();
   }
-
-  // Заглушки для ссылок Про нас и Контакти
-  document.getElementById("aboutLink").addEventListener("click", e => e.preventDefault());
-  document.getElementById("contactLink").addEventListener("click", e => e.preventDefault());
 
   // Инициализация
   updateCart();
